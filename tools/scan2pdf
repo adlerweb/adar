@@ -131,5 +131,5 @@ for i in `ls ${TMPDIR}/scan-{0..9}.pdf 2>/dev/null` ;do
     mv $i ${TMPDIR}/scan-0${i##*-}
 done
 
-$pdftk *.pdf cat output "${OUTPUT}" 
+$pdftk ${TMPDIR}/*.pdf cat output "${OUTPUT}" 
 rm -Rv ${TMPDIR}/*.tiff ${TMPDIR}/*.pdf ${TMPDIR}/*.hocr.html
