@@ -21,6 +21,7 @@ blankpagesize=40k
 
 TMPDIR=/tmp/scan
 #unpaper=/usr/bin/unpaper
+scanimage=/usr/bin/scanimage
 pnmtojpeg=/usr/bin/pnmtojpeg
 pnmtotiff=/usr/bin/pnmtotiff
 #tiffcp=/usr/bin/tiffcp
@@ -39,6 +40,11 @@ TESSDATA_PREFIX="/usr/share/"
 set -x
 
 #### PRÜFEN OB ALLE PROGRAMME VORHANDEN SIND ####
+if [ ! -f "$scanimage" ] ;then
+    echo scanimage not found - Package sane \(-frontend\)
+    exit 1
+fi
+
 if [ ! -f "$pnmtojpeg" ] ;then
     echo pnmtojpeg not found - Package netpbm
     exit 1
@@ -55,7 +61,7 @@ fi
 #fi
 
 if [ ! -f "$tiff2pdf" ] ;then
-    echo tiff2pdf not found - package libtiff
+    echo tiff2pdf not found - package libtiff \(-tools/utils\)
     exit 1
 fi
 
@@ -92,7 +98,7 @@ rm -Rvi ${TMPDIR}/*
 OUTPUT=./scan-`date +%Y%m%d%H%M%S`.pdf
 
 #Scan starten
-scanimage -d "${SCANNER}" --source "${SOURCE}" --mode Lineart --resolution "${RESOLUTION}" --format=pnm -p --brightness "${BRIGHTNESS}" --batch=/tmp/scan/scan-%d.pnm --page-height=310 --page-width=210 -x 210 -y 310
+${scanimage} -d "${SCANNER}" --source "${SOURCE}" --mode Lineart --resolution "${RESOLUTION}" --format=pnm -p --brightness "${BRIGHTNESS}" --batch=/tmp/scan/scan-%d.pnm --page-height=310 --page-width=210 -x 210 -y 310
 
 #${unpaper} -v --layout none ${TMPDIR}/scan-%d.pnm 
 #${unpaper} --no-blackfilter --no-grayfilter --layout single -v ${TMPDIR}/scan-%d.pnm ${TMPDIR}/unpaper-%d.pnm
