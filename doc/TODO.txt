@@ -1,0 +1,12 @@
+- search tags
+- user management
+- installer
+- API/Liveforms kombinieren
+- Verwaltung Kontakte
+- Insert-API aufnehmen
+- Suche: Datumsbereiche/Datepicker
+- Formularerkennung
+- Mehr Dateitypen (Libreoffice-API?)
+- GPG statt SHA256
+- gettext / Übersetzungen
+
