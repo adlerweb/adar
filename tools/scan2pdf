@@ -116,12 +116,15 @@ ${scanimage} -d "${SCANNER}" --source "${SOURCE}" --mode ${SCANMODE} --resolutio
 #${TMPDIR}/unpaper-%d.pnm
 
 #PNM in TIFF umwandeln und komprimieren
+function convert_pnm () {
+	${pnmtotiff} $1 >$1.raw.tiff
+	$convert $1.raw.tiff -compress LZW $1.tiff
+	rm $1.raw.tiff
+	rm $1
+done
+
 for file in ${TMPDIR}/scan*; do
-    ${pnmtotiff} $file >$file.raw.tiff
-    #${tiffcp} -c zip:2 $file.raw.tiff $file.tiff
-    $convert $file.raw.tiff -compress LZW $file.tiff
-    rm $file.raw.tiff
-    rm $file
+    	convert_pnm $file
 done
 
 #Dateien größer als $blankpagesize finden (=ohne leere Seiten)
