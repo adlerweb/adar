@@ -125,7 +125,7 @@ for file in ${TMPDIR}/scan*; do
 done
 
 #Dateien größer als $blankpagesize finden (=ohne leere Seiten)
-files=`find ${TMPDIR} -iname "scan*tiff" -size +$blankpagesize`
+files=`find ${TMPDIR} -iname "scan*tiff" -size +$blankpagesize | sort`
 
 #OCR starten und pro Seite ein PDF erstellen
 parallel -j ${KERNE} \
@@ -150,5 +150,7 @@ for i in `ls ${TMPDIR}/scan-{0..9}.pdf 2>/dev/null` ;do
     mv $i ${TMPDIR}/scan-0${i##*-}
 done
 
-$stapler cat ${TMPDIR}/*.pdf "${OUTPUT}"
+pdfs=`find ${TMPDIR} -iname "scan*pdf" | sort`
+
+$stapler cat $pdfs "${OUTPUT}"
 rm -Rv ${TMPDIR}/*.tiff ${TMPDIR}/*.pdf ${TMPDIR}/*.hocr.hocr
