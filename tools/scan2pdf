@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#####################################
+# Scanscript for Dokument Archiving
+#
+# Autor: adlerweb + kreativmonkey
+# Version: 0.5
+#####################################
+
 SCANNER="fujitsu:fi-4120C2dj:18084"
 RESOLUTION=300
 BRIGHTNESS=-32
@@ -21,6 +28,7 @@ blankpagesize=40k
 
 #Notizen:
 # -> Unpaper entfernt, schluckt ggf. i-Punkte und Tabellenlinien
+# -> hocr2pdf entfernt, wird durch tesseract version 3.03 nicht mehr benötigt.
 
 TMPDIR=/tmp/scan
 #unpaper=/usr/bin/unpaper
@@ -31,7 +39,6 @@ pnmtotiff=/usr/bin/pnmtotiff
 tiff2pdf=/usr/bin/tiff2pdf
 pnmtopng=/usr/bin/pnmtopng
 tesseract=/usr/bin/tesseract
-hocr2pdf=/usr/bin/hocr2pdf
 pdftk=/usr/bin/pdftk
 convert=/usr/bin/convert
 
@@ -70,11 +77,6 @@ fi
 
 if [ ! -f "$tesseract" ] ;then
     echo tesseract not found - package tesseract
-    exit 1
-fi
-
-if [ ! -f "$hocr2pdf" ] ;then
-    echo hocr2pdf not found - package exactimage
     exit 1
 fi
 
@@ -121,9 +123,7 @@ files=`find ${TMPDIR} -iname "scan*tiff" -size +$blankpagesize`
 
 #OCR starten und pro Seite ein PDF erstellen
 for i in ${files} ;do
-	$tesseract $i $i.hocr -l deu hocr
-	$hocr2pdf -s -i $i -o $i.pdf < $i.hocr.html
-	rm $i.hocr.html
+	$tesseract -l deu $i $i pdf
 	rm $i
 done
 
