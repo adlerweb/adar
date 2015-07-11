@@ -7,7 +7,7 @@
 # Version: 0.5
 #####################################
 
-SCANNER="fujitsu:fi-4120C2dj:18084"
+SCANNER="fujitsu:fi-4120Cdj:12666" # Scanner ID
 RESOLUTION=300
 BRIGHTNESS=-32
 SOURCE="ADF Duplex"
@@ -15,6 +15,7 @@ SOURCE="ADF Duplex"
 SCANMODE="lineart"
 #SCANMODE="color"
 #SCANMODE="gray"
+KERNE=2 #Anzahl der zu verwendenden Kerne
 
 blankpagesize=40k
 
@@ -27,8 +28,7 @@ blankpagesize=40k
 # -> Aufgabenqueue - nächster Scan während OCR noch läuft
 
 #Notizen:
-# -> Unpaper entfernt, schluckt ggf. i-Punkte und Tabellenlinien
-# -> hocr2pdf entfernt, wird durch tesseract version 3.03 nicht mehr benötigt.
+# -> Unpaper deaktiviert, schluckt ggf. i-Punkte und Tabellenlinien
 
 TMPDIR=/tmp/scan
 #unpaper=/usr/bin/unpaper
@@ -39,11 +39,11 @@ pnmtotiff=/usr/bin/pnmtotiff
 tiff2pdf=/usr/bin/tiff2pdf
 pnmtopng=/usr/bin/pnmtopng
 tesseract=/usr/bin/tesseract
-pdftk=/usr/bin/pdftk
+stapler=/usr/bin/stapler
 convert=/usr/bin/convert
+parallel=/usr/bin/parallel
 
 TESSDATA_PREFIX="/usr/share/"
-
 
 
 #"Debug"-Modus (alle Befehle anzeigen)
@@ -80,8 +80,8 @@ if [ ! -f "$tesseract" ] ;then
     exit 1
 fi
 
-if [ ! -f "$pdftk" ] ;then
-    echo pdftk not found - package pdftk
+if [ ! -f "$stapler" ] ;then
+    echo stapler not found - package stapler
     exit 1
 fi
 
@@ -90,12 +90,17 @@ if [ ! -f "$convert" ] ;then
     exit 1
 fi
 
+if [ ! -f "$parallel" ] ;then
+    echo parallel not found - package parallel
+    exit 1
+fi
+
 #if [ -a $unpaper ] ;then
 #    echo unpaper not found
 #    exit 1
 #fi
 
-#Temp-Verzeichnis anlegen/löschen
+#Temp-Dir creat and delete
 mkdir -p ${TMPDIR}
 rm -Rvi ${TMPDIR}/*
 
@@ -103,7 +108,8 @@ rm -Rvi ${TMPDIR}/*
 OUTPUT=./scan-`date +%Y%m%d%H%M%S`.pdf
 
 #Scan starten
-${scanimage} -d "${SCANNER}" --source "${SOURCE}" --mode ${SCANMODE} --resolution "${RESOLUTION}" --format=pnm -p --brightness "${BRIGHTNESS}" --batch=/tmp/scan/scan-%d.pnm --page-height=310 --page-width=210 -x 210 -y 310
+${scanimage} -d "${SCANNER}" --source "${SOURCE}" --mode ${SCANMODE} --resolution "${RESOLUTION}" --format=pnm -p --brightness "${BRIGHTNESS}" --batch=/tmp/scan/scan-%d.pnm --page-height=310
+--page-width=210 -x 210 -y 310
 
 #${unpaper} -v --layout none ${TMPDIR}/scan-%d.pnm 
 #${unpaper} --no-blackfilter --no-grayfilter --layout single -v ${TMPDIR}/scan-%d.pnm ${TMPDIR}/unpaper-%d.pnm
@@ -118,12 +124,16 @@ for file in ${TMPDIR}/scan*; do
     rm $file
 done
 
-#Dateien größer als $bankpagesize finden (=ohne leere Seiten)
+#Dateien größer als $blankpagesize finden (=ohne leere Seiten)
 files=`find ${TMPDIR} -iname "scan*tiff" -size +$blankpagesize`
 
 #OCR starten und pro Seite ein PDF erstellen
+parallel -j ${KERNE} \
+$tesseract -l deu {} {.} pdf \
+::: ${files}
+
+#remove unused files
 for i in ${files} ;do
-	$tesseract -l deu $i $i pdf
 	rm $i
 done
 
@@ -140,5 +150,5 @@ for i in `ls ${TMPDIR}/scan-{0..9}.pdf 2>/dev/null` ;do
     mv $i ${TMPDIR}/scan-0${i##*-}
 done
 
-$pdftk ${TMPDIR}/*.pdf cat output "${OUTPUT}" 
-rm -Rv ${TMPDIR}/*.tiff ${TMPDIR}/*.pdf ${TMPDIR}/*.hocr.html
+$stapler cat ${TMPDIR}/*.pdf "${OUTPUT}"
+rm -Rv ${TMPDIR}/*.tiff ${TMPDIR}/*.pdf ${TMPDIR}/*.hocr.hocr
