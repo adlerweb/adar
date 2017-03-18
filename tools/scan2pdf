@@ -1,23 +1,16 @@
 #!/bin/bash
 
-#####################################
-# Scanscript for Dokument Archiving
-#
-# Autor: adlerweb + kreativmonkey
-# Version: 0.5
-#####################################
-
-SCANNER="fujitsu:fi-4120Cdj:12666" # Scanner ID
+SCANNER="fujitsu:ScanSnap iX500:1208547"
 RESOLUTION=300
-BRIGHTNESS=-32
+BRIGHTNESS=-15
 SOURCE="ADF Duplex"
 #SOURCE="ADF Front"
 SCANMODE="lineart"
 #SCANMODE="color"
 #SCANMODE="gray"
-KERNE=2 #Anzahl der zu verwendenden Kerne
+KERNE=6
 
-blankpagesize=40k
+blankpagesize=5000
 
 #Info
 #Scannt DIN A4 (310x210mm)
@@ -28,10 +21,11 @@ blankpagesize=40k
 # -> Aufgabenqueue - nächster Scan während OCR noch läuft
 
 #Notizen:
-# -> Unpaper deaktiviert, schluckt ggf. i-Punkte und Tabellenlinien
+# -> Unpaper entfernt, schluckt ggf. i-Punkte und Tabellenlinien
 
 TMPDIR=/tmp/scan
-#unpaper=/usr/bin/unpaper
+SAVEDIR=/home/sebastian/Sync
+unpaper=/usr/bin/unpaper
 scanimage=/usr/bin/scanimage
 pnmtojpeg=/usr/bin/pnmtojpeg
 pnmtotiff=/usr/bin/pnmtotiff
@@ -39,12 +33,12 @@ pnmtotiff=/usr/bin/pnmtotiff
 tiff2pdf=/usr/bin/tiff2pdf
 pnmtopng=/usr/bin/pnmtopng
 tesseract=/usr/bin/tesseract
+#hocr2pdf=/usr/bin/hocr2pdf
 stapler=/usr/bin/stapler
 convert=/usr/bin/convert
 parallel=/usr/bin/parallel
 
 TESSDATA_PREFIX="/usr/share/"
-
 
 #"Debug"-Modus (alle Befehle anzeigen)
 set -x
@@ -95,47 +89,60 @@ if [ ! -f "$parallel" ] ;then
     exit 1
 fi
 
-#if [ -a $unpaper ] ;then
-#    echo unpaper not found
-#    exit 1
-#fi
+if [ ! -f $unpaper ] ;then
+    echo unpaper not found
+    exit 1
+fi
 
-#Temp-Dir creat and delete
+#Temp-Verzeichnis anlegen/löschen
+RAND=$(cat /dev/urandom | tr -dc A-Za-z0-9 | head -c${1:-16})
+TMPDIR=${TMPDIR}${RAND}
 mkdir -p ${TMPDIR}
-rm -Rvi ${TMPDIR}/*
+rm -Rvi ${TMPDIR}${RAND}/*
 
 #Dateiname für Ausgabe
-OUTPUT=./scan-`date +%Y%m%d%H%M%S`.pdf
+OUTPUT=`date +%Y%m%d%H%M%S`-scan.pdf
 
 #Scan starten
-${scanimage} -d "${SCANNER}" --source "${SOURCE}" --mode ${SCANMODE} --resolution "${RESOLUTION}" --format=pnm -p --brightness "${BRIGHTNESS}" --batch=/tmp/scan/scan-%d.pnm --page-height=310
---page-width=210 -x 210 -y 310
+${scanimage} -d "${SCANNER}" --source "${SOURCE}" --mode ${SCANMODE} --resolution "${RESOLUTION}" --format=pnm -p --brightness "${BRIGHTNESS}" --batch=${TMPDIR}/scan-%02d.pnm --page-height=315 --page-width=210 -x 210 -y 315
 
-#${unpaper} -v --layout none ${TMPDIR}/scan-%d.pnm 
-#${unpaper} --no-blackfilter --no-grayfilter --layout single -v ${TMPDIR}/scan-%d.pnm ${TMPDIR}/unpaper-%d.pnm
-#${TMPDIR}/unpaper-%d.pnm
+#${unpaper} -v --layout none ${TMPDIR}/scan-%02d.pnm 
+#${unpaper} --no-blackfilter --no-grayfilter --layout single -v ${TMPDIR}/scan-%02d.pnm ${TMPDIR}/unpaper-%02d.pnm
+#${TMPDIR}/upaper-%d.pnm
 
 #PNM in TIFF umwandeln und komprimieren
 function convert_pnm () {
-	${pnmtotiff} $1 >$1.raw.tiff
+	${pnmtotiff} $1 > $1.raw.tiff
 	$convert $1.raw.tiff -compress LZW $1.tiff
 	rm $1.raw.tiff
 	rm $1
-done
-
+	if [ $(stat --printf="%s" $1.tiff) -le $blankpagesize ]; then
+		rm $1.tiff
+		echo $1 ist eine Leere Seite
+	fi
+}
+#export -f convert_pnm
+#parallel convert_pnm ::: `ls ${TMPDIR}/scan*`
+ 
 for file in ${TMPDIR}/scan*; do
-    	convert_pnm $file
+	convert_pnm $file
 done
 
-#Dateien größer als $blankpagesize finden (=ohne leere Seiten)
-files=`find ${TMPDIR} -iname "scan*tiff" -size +$blankpagesize | sort`
+#Dateien grösser als $bankpagesize finden (=ohne leere Seiten)
+files=`find ${TMPDIR} -iname "scan*tiff" -size +40k | sort`
+
+#Wenn keine Datei vorhanden
+if [ -z "$files" ]; then
+	echo Keine Dateien vorhanden.
+	rm ${TMPDIR}/*
+	exit 1
+fi
 
 #OCR starten und pro Seite ein PDF erstellen
 parallel -j ${KERNE} \
 $tesseract -l deu {} {.} pdf \
 ::: ${files}
 
-#remove unused files
 for i in ${files} ;do
 	rm $i
 done
@@ -155,5 +162,5 @@ done
 
 pdfs=`find ${TMPDIR} -iname "scan*pdf" | sort`
 
-$stapler cat $pdfs "${OUTPUT}"
-rm -Rv ${TMPDIR}/*.tiff ${TMPDIR}/*.pdf ${TMPDIR}/*.hocr.hocr
+$stapler cat $pdfs "${SAVEDIR}/${OUTPUT}"
+rm -Rv ${TMPDIR}/*.tiff ${TMPDIR}/*.pdf  ${TMPDIR}/*.txt
