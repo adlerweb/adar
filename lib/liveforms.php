@@ -11,7 +11,7 @@
 session_start();
 require_once('../config.php');
 require_once('mysql.wrapper.php');
-require_once('awtools/session.php');
+require_once('../vendor/adlerweb/awtools/session.php');
 
 if(!isset($_GET['q']) || !isset($_GET['m'])) {
     die('Fehler…');
