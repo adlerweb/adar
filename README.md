@@ -16,7 +16,7 @@ Das System wird von mir aktiv zur Datenablage genutzt. Hierzu werden PDF-Dateien
 
 ## Installation
 
- - Benötigt einen Webserver mit PHP >=5.6 und EXIF-Support
+ - Benötigt einen Webserver mit PHP >=5.6, GD und EXIF-Support
  - Benötigt eine MySQL-Datenbank
  - Benötigt [composer](https://getcomposer.org/)
  - tesseract >=3
@@ -24,7 +24,8 @@ Das System wird von mir aktiv zur Datenablage genutzt. Hierzu werden PDF-Dateien
    - nicht wirklich getestet, Sprache Deutsch voreingestellt
  - pdftotext
    - Zum Extrahieren von Text aus PDF-Dateien
-
+ - imagemagick
+   - bzw. dessen convert um Bilddaten umzuwandeln
 
  - Daten auf Webserver kopieren
    - Die Ordner daten/* und tpl/cache/ müssen für den Webserver schreibbar sein
