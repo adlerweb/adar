@@ -69,7 +69,7 @@ if($list->num_rows > 0) {
                 $desc = $item->Description."\n\n---\n\n.";
             }
             $desc .= $ocr;
-            $GLOBALS['adlerweb']['sql']->querystmt("UPDATE `Items` SET `Description` = ? `OCRStatus` = 2 WHERE ItemID = ?;", 'ss', array($desc, $item->ItemID));
+            $GLOBALS['adlerweb']['sql']->querystmt("UPDATE `Items` SET `Description` = ?, `OCRStatus` = 2 WHERE ItemID = ?;", 'ss', array($desc, $item->ItemID));
             echo "    Added ".strlen($ocr)." chars\n";
         }
     }
