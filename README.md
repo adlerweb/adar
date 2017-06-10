@@ -43,6 +43,20 @@ Das System wird von mir aktiv zur Datenablage genutzt. Hierzu werden PDF-Dateien
    - z.B. ```*/15 * * * * /usr/bin/php -f /var/www/cron.php > /var/log/adar.cron.log``` in crontab
  - Login mit admin/admin
 
+### Debian Jessie
+
+Für Debian Jessie steht ein automatisches Installationsscript mit Konfigurationsassistent in [doc/setup-debian8.sh](https://github.com/adlerweb/adar/blob/master/doc/setup-debian8.sh) zur Verfügung:
+
+````
+pushd /tmp
+wget "https://raw.githubusercontent.com/adlerweb/adar/master/doc/setup-debian8.sh"
+bash setup-debian8.de
+popd
+````
+
+Dies installiert alle Voraussetzungen (Apache/MariaDB, etc), ändert die Konfigurationen, erstellt die Datenbank und legt ein Login-Passwort fest. Da hierbei Systemkonfigurationen geändert werden sollte das Script nur auf ausschließlich für AdAr vorgesehenen Systemen (VM, Container, etc) verwendet werden.
+Achtung: Für die PHP7-Installation wird das dotdeb-Repository verwendet, dies ist aktuell nur für x86-Prozessoren verfügbar. Eine Nutzung der automatischen Installation auf ARM-Systemen wie Raspberry Pi ist daher nicht möglich.
+
 ## Hinweise
  - Aktuell existiert keine grafische Nutzerverwaltung, das Passwort kann also nicht geändert werden. Generell empfieht es sich eine Authentifizierung auf Webserverebene einzurichten. Die Nutzer lassen sich in SQL editieren, passende Passwort-Hashes können üder die Funktion [session_getNewPasswordHash](https://github.com/adlerweb/awtools/blob/master/session.php#L137) generiert werden.
  - Backups.
