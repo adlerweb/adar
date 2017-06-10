@@ -18,7 +18,7 @@ Das System wird von mir aktiv zur Datenablage genutzt. Hierzu werden PDF-Dateien
 
 ### Voraussetzungen
 
- - Benötigt einen Webserver mit PHP >=5.6, GD und EXIF-Support
+ - Benötigt einen Webserver mit PHP >=7.0, GD und EXIF-Support
  - Benötigt Server mit IPv4-Zugang (Github unterstützt noch kein IPv6)
  - Benötigt eine MySQL/MariaDB-Datenbank
  - Benötigt [composer](https://getcomposer.org/)
