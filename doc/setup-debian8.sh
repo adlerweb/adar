@@ -15,6 +15,7 @@ apt-get install php7.0 php7.0-cli php7.0-mysql php7.0-gd libapache2-mod-php7.0 p
 phpenmod gd
 phpenmod mysqli
 phpenmod opcache
+phpenmod zip
 sed -e "s/memory_limit = 128M/memory_limit = 512M/g" /etc/php/7.0/apache2/php.ini > /etc/php/7.0/apache2/php.ini.tmp && mv /etc/php/7.0/apache2/php.ini.tmp /etc/php/7.0/apache2/php.ini
 sed -e "s/memory_limit = 128M/memory_limit = 512M/g" /etc/php/7.0/cli/php.ini > /etc/php/7.0/cli/php.ini.tmp && mv /etc/php/7.0/cli/php.ini.tmp /etc/php/7.0/cli/php.ini
 systemctl restart apache2.service
