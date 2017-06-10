@@ -19,7 +19,8 @@ Das System wird von mir aktiv zur Datenablage genutzt. Hierzu werden PDF-Dateien
 ### Voraussetzungen
 
  - Benötigt einen Webserver mit PHP >=5.6, GD und EXIF-Support
- - Benötigt eine MySQL-Datenbank
+ - Benötigt Server mit IPv4-Zugang (Github unterstützt noch kein IPv6)
+ - Benötigt eine MySQL/MariaDB-Datenbank
  - Benötigt [composer](https://getcomposer.org/)
  - tesseract >=3
    - Um OCR für Grafiken auszuführen
