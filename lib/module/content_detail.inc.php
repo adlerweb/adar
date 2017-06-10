@@ -80,31 +80,26 @@
                     }
                 }
 
-                if(isset($_GET['pdf'])) {
-                    require_once('lib/fpdf/fpdf.php');
-                }else{
+                if(isset($tagarr)) $GLOBALS['adlerweb']['tpl']->assign('Tags', implode(',', $tagarr));
 
-                    if(isset($tagarr)) $GLOBALS['adlerweb']['tpl']->assign('Tags', implode(',', $tagarr));
-
-                    $GLOBALS['adlerweb']['tpl']->assign('ItemID', htmlentities($detail['ItemID'], ENT_COMPAT, 'UTF-8'));
-                    $GLOBALS['adlerweb']['tpl']->assign('Caption', htmlentities($detail['Caption'], ENT_COMPAT, 'UTF-8'));
-                    $GLOBALS['adlerweb']['tpl']->assign('Description', htmlentities($detail['Description'], ENT_COMPAT, 'UTF-8'));
-                    $GLOBALS['adlerweb']['tpl']->assign('Format', htmlentities($detail['Format'], ENT_COMPAT, 'UTF-8'));
-                    $GLOBALS['adlerweb']['tpl']->assign('Date', ($detail['Date'] !== NULL) ? htmlentities(strftime("%d.%m.%Y", strtotime($detail['Date'])), ENT_COMPAT, 'UTF-8') : '' );
-                    $GLOBALS['adlerweb']['tpl']->assign('R_CID', htmlentities($detail['R_CID'], ENT_COMPAT, 'UTF-8'));
-                    $GLOBALS['adlerweb']['tpl']->assign('R_FamilyName', htmlentities($detail['R_FamilyName'], ENT_COMPAT, 'UTF-8'));
-                    $GLOBALS['adlerweb']['tpl']->assign('R_GivenName', htmlentities($detail['R_GivenName'], ENT_COMPAT, 'UTF-8'));
-                    $GLOBALS['adlerweb']['tpl']->assign('S_CID', htmlentities($detail['S_CID'], ENT_COMPAT, 'UTF-8'));
-                    $GLOBALS['adlerweb']['tpl']->assign('S_FamilyName', htmlentities($detail['S_FamilyName'], ENT_COMPAT, 'UTF-8'));
-                    $GLOBALS['adlerweb']['tpl']->assign('S_GivenName', htmlentities($detail['S_GivenName'], ENT_COMPAT, 'UTF-8'));
-                    $GLOBALS['adlerweb']['tpl']->assign('ScanUser', htmlentities($detail['Name'], ENT_COMPAT, 'UTF-8'));
-                    $GLOBALS['adlerweb']['tpl']->assign('ScanDate', htmlentities(strftime("%d.%m.%Y", strtotime($detail['ScanDate'])), ENT_COMPAT, 'UTF-8'));
-                    $GLOBALS['adlerweb']['tpl']->assign('SourceSHA256', chunk_split(htmlentities($detail['SourceSHA256'], ENT_COMPAT, 'UTF-8'), 8, ' '));
-                    $GLOBALS['adlerweb']['tpl']->assign('pages', $multi);
-                    $GLOBALS['adlerweb']['tpl']->assign('titel', 'Detailansicht '.htmlentities($id));
-                    $GLOBALS['adlerweb']['tpl']->assign('modul', 'content_detail');
-                    $GLOBALS['adlerweb']['tpl']->assign('REQUEST_URI', $_SERVER["REQUEST_URI"]);
-                }
+                $GLOBALS['adlerweb']['tpl']->assign('ItemID', htmlentities($detail['ItemID'], ENT_COMPAT, 'UTF-8'));
+                $GLOBALS['adlerweb']['tpl']->assign('Caption', htmlentities($detail['Caption'], ENT_COMPAT, 'UTF-8'));
+                $GLOBALS['adlerweb']['tpl']->assign('Description', htmlentities($detail['Description'], ENT_COMPAT, 'UTF-8'));
+                $GLOBALS['adlerweb']['tpl']->assign('Format', htmlentities($detail['Format'], ENT_COMPAT, 'UTF-8'));
+                $GLOBALS['adlerweb']['tpl']->assign('Date', ($detail['Date'] !== NULL) ? htmlentities(strftime("%d.%m.%Y", strtotime($detail['Date'])), ENT_COMPAT, 'UTF-8') : '' );
+                $GLOBALS['adlerweb']['tpl']->assign('R_CID', htmlentities($detail['R_CID'], ENT_COMPAT, 'UTF-8'));
+                $GLOBALS['adlerweb']['tpl']->assign('R_FamilyName', htmlentities($detail['R_FamilyName'], ENT_COMPAT, 'UTF-8'));
+                $GLOBALS['adlerweb']['tpl']->assign('R_GivenName', htmlentities($detail['R_GivenName'], ENT_COMPAT, 'UTF-8'));
+                $GLOBALS['adlerweb']['tpl']->assign('S_CID', htmlentities($detail['S_CID'], ENT_COMPAT, 'UTF-8'));
+                $GLOBALS['adlerweb']['tpl']->assign('S_FamilyName', htmlentities($detail['S_FamilyName'], ENT_COMPAT, 'UTF-8'));
+                $GLOBALS['adlerweb']['tpl']->assign('S_GivenName', htmlentities($detail['S_GivenName'], ENT_COMPAT, 'UTF-8'));
+                $GLOBALS['adlerweb']['tpl']->assign('ScanUser', htmlentities($detail['Name'], ENT_COMPAT, 'UTF-8'));
+                $GLOBALS['adlerweb']['tpl']->assign('ScanDate', htmlentities(strftime("%d.%m.%Y", strtotime($detail['ScanDate'])), ENT_COMPAT, 'UTF-8'));
+                $GLOBALS['adlerweb']['tpl']->assign('SourceSHA256', chunk_split(htmlentities($detail['SourceSHA256'], ENT_COMPAT, 'UTF-8'), 8, ' '));
+                $GLOBALS['adlerweb']['tpl']->assign('pages', $multi);
+                $GLOBALS['adlerweb']['tpl']->assign('titel', 'Detailansicht '.htmlentities($id));
+                $GLOBALS['adlerweb']['tpl']->assign('modul', 'content_detail');
+                $GLOBALS['adlerweb']['tpl']->assign('REQUEST_URI', $_SERVER["REQUEST_URI"]);
             }
         }
     }
