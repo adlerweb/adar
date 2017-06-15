@@ -12,8 +12,8 @@
 error_reporting(E_ALL);
 
 define("AW_SQL_SERV",            "localhost");
-define("AW_SQL_USER",            "adar");
-define("AW_SQL_PASS",            "testinstallation");
+define("AW_SQL_USER",            "root");
+define("AW_SQL_PASS",            "root");
 define("AW_SQL_DATB",            "adar");
 define("AW_SQL_DEBUG",           true);
 define("AW_SQL_DEBUG_SHOW",      false);

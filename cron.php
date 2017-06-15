@@ -52,7 +52,7 @@ if($list->num_rows > 0) {
                 
                 #Document with only a single page…
                 if(file_exists('data/tmp/'.$item->ItemID.'.png')) {
-                    rename('data/tmp/'.$item->ItemID.'.png', 'data/tmp/'.$item->ItemID.'-'.$page.'.png')
+                    rename('data/tmp/'.$item->ItemID.'.png', 'data/tmp/'.$item->ItemID.'-'.$page.'.png');
                 }
                 
                 do {
