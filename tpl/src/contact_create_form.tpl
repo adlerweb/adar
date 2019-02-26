@@ -7,10 +7,10 @@
             <tr><td><label for="GivenName">Vorname / Ansprechpartner:</label></td><td><input type="text" id="GivenName"  size="100%" {if $details.GivenName !== null} value="{$details.GivenName}"{/if} /></td><td></td></tr>
             <tr><td><label for="Type">Typ:</label></td><td>
                 <select name="Type">
-                    <option value="u" {If $details.Type == 'u'}selected="selected"{/if}>Nicht angegeben</option>
-                    <option value="m" {If $details.Type == 'm'}selected="selected"{/if}>Herr</option>
-                    <option value="f" {If $details.Type == 'f'}selected="selected"{/if}>Frau</option>
-                    <option value="c" {If $details.Type == 'c'}selected="selected"{/if}>Firma</option>
+                    <option value="u" {If $details.Type == 'u'}selected="selected"{/if}>Not specified</option>
+                    <option value="m" {If $details.Type == 'm'}selected="selected"{/if}>Sir</option>
+                    <option value="f" {If $details.Type == 'f'}selected="selected"{/if}>Mrs</option>
+                    <option value="c" {If $details.Type == 'c'}selected="selected"{/if}>Company</option>
                 </select>
             </td><td></td></tr>
         </table>
@@ -21,8 +21,10 @@
     <fieldset>
         <legend>Adresse</legend>
         <table>
-            <tr><td><label for="Street">Straße:</label></td><td><input type="text" id="Street" {if $details.Street !== null} value="{$details.Street}"{/if} /> <input type="text" id="Housenr" size="6" {if $details.Housenr !== null} value="{$details.Housenr}"{/if} /></td></tr>
-            <tr><td><label for="ZIP">PLZ:</label></td><td><input type="text" id="ZIP" size="6" {if $details.ZIP !== null} value="{$details.ZIP}"{/if} /> <input type="text" id="City" {if $details.City !== null} value="{$details.City}"{/if} /></td></tr>
+            <tr><td><label for="Street">Straße:</label></td><td><input type="text" id="Street" {if $details.Street !== null} value="{$details.Street}"{/if} /> 
+			<input type="text" id="Housenr" size="6" {if $details.Housenr !== null} value="{$details.Housenr}"{/if} /></td></tr>
+            <tr><td><label for="ZIP">PLZ:</label></td><td><input type="text" id="ZIP" size="6" {if $details.ZIP !== null} value="{$details.ZIP}"{/if} /> 
+			<input type="text" id="City" {if $details.City !== null} value="{$details.City}"{/if} /></td></tr>
             <tr><td><label for="Country">Land:</label></td><td>
                 <select name="Country">
                     {foreach from=$countries item=c}
@@ -36,7 +38,7 @@
     <br />
 
     <fieldset>
-        <legend>Kontaktdaten</legend>
+        <legend>Dontact Details</legend>
         <table>
             <tr><td><label for="Phone">Telefon:</label></td><td><input type="text" id="Phone" size="100%" {if $details.Phone !== null} value="{$details.Phone}"{/if} /></td></tr>
             <tr><td><label for="Fax">Fax:</label></td><td><input type="text" id="Fax" size="100%" {if $details.Fax !== null} value="{$details.Fax}"{/if} /></td></tr>
