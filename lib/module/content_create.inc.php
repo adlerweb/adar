@@ -187,7 +187,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
         }
     }
 }else{
-    $GLOBALS['adlerweb']['tpl']->assign('titel', 'Erfassen - Schritt 1 von 2');
+    $GLOBALS['adlerweb']['tpl']->assign('titel', 'Capture - Step 1 of 2');
     $GLOBALS['adlerweb']['tpl']->assign('modul', 'create_upload');
     $GLOBALS['adlerweb']['tpl']->assign('menue', 'content_create');
 }
