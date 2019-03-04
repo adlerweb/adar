@@ -9,7 +9,11 @@
 			<input type="text" id="Format" placeholder="{$Format}" onfocus="dynReq(this, 'c', 'Format', 1);" onkeyup="dynReq(this, 'c', 'Format', 1);" onblur="dynReqBlur(this);" />
 			<div id="Format_hint" style="position: absolute; background-color: #ccc;"></div></td><td></td></tr>
             <tr><td><label for="Date">Document Date:</label></td><td><!--<input type="text" id="Date" value="{$date}" />--><script>DateInput('Date', true, 'YYYY-MM-DD', '{$date}')</script></td><td></td></tr>
+<<<<<<< HEAD
             <tr><td><label for="SHA256">Integrity Test:</label></td><td><input type="text" id="SHA256" value="{$hash}" readonly="readonly" /></td><td></td></tr>
+=======
+            <tr><td><label for="SHA256">Intigritätstest:</label></td><td><input type="text" id="SHA256" value="{$hash}" readonly="readonly" /></td><td></td></tr>
+>>>>>>> cafd3d2555b533fc494e7bf6f18ad4bbfd97f580
         </table>
     </fieldset><br />
 
