@@ -1,6 +1,6 @@
 <?PHP
 
-$back='<div class="centered infobox_addtext"><a href="javascript:history.go(-1)">&laquo; Zur&uuml;ck &laquo;</a></div>';
+$back='<div class="centered infobox_addtext"><a href="javascript:history.go(-1)">&laquo; To main navigation &laquo;</a></div>';
 
 if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     $GLOBALS['adlerweb']['tpl']->assign('titel',  'No authorization');
@@ -30,7 +30,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
             $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
             $GLOBALS['adlerweb']['tpl']->assign('errstr', 'The specified file is not a picture or in an unknown format. ('.$mime.')'.$back);
         }elseif(!@move_uploaded_file($_FILES['file']['tmp_name'], $target_path)) {
-            $GLOBALS['adlerweb']['tpl']->assign('titel',  'Fehler bei der Erfassung');
+            $GLOBALS['adlerweb']['tpl']->assign('titel',  'Error in the capture');
             $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
             $GLOBALS['adlerweb']['tpl']->assign('errstr', 'An unknown error occurred during capture. Please contact the operator.'.$back);
         }else{
@@ -90,7 +90,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
             }
         }
     }
-}elseif(isset($_REQUEST['a']) && $_REQUEST['a'] == 'Erfassen' && isset($_REQUEST['SHA256']) && isset($_REQUEST['ItemID'])) {
+}elseif(isset($_REQUEST['a']) && $_REQUEST['a'] == 'To capture' && isset($_REQUEST['SHA256']) && isset($_REQUEST['ItemID'])) {
     $source_path = "data/tmp/";
     $source_path .= $_REQUEST['SHA256'];
     $target_path = "data/org/";
@@ -182,7 +182,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
                 $GLOBALS['adlerweb']['tpl']->assign('titel',  'Archive material successfully recorded!');
                 $GLOBALS['adlerweb']['tpl']->assign('errstr', 'The archived material was successfully transferred to the database.'.$back2);
                 $GLOBALS['adlerweb']['tpl']->assign('errico', 'information');
-                infomail("Neues Archivgut AdAR", $_REQUEST['Caption']);
+                infomail("New Archive AdAR", $_REQUEST['Caption']);
             }
         }
     }

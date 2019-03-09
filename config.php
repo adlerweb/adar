@@ -22,6 +22,6 @@ define("SMARTY_CACHE",          false);
 
 define("ADAR_PROGNAME",         'AdAr - Another dumb Archive');
 
-define("ADAR_INFOMAIL_TO",      '');
+define("ADAR_INFOMAIL_TO",      'doriva17@gmail.com');
 define("ADAR_INFOMAIL_FROM",    'ADAR <adar@localhost>');
  ?>

@@ -7,7 +7,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
     $GLOBALS['adlerweb']['tpl']->assign('errstr', 'You do not have the required rights to enter new contacts.'.$back);
 }elseif(isset($_REQUEST['a'])
-    && $_REQUEST['a'] == 'Erfassen'
+    && $_REQUEST['a'] == 'To capture'
     && isset($_REQUEST['id'])
     && isset($_REQUEST['FamilyName'])
     && isset($_REQUEST['GivenName'])
@@ -80,12 +80,12 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
         $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
         $GLOBALS['adlerweb']['tpl']->assign('errstr', 'There was a database error # 103.'.$back);
     }else{
-        //$back2='<div class="centered infobox_addtext"><a href="?m=content_detail&id='.$itemid.'">&raquo; To the detail page &raquo;</a></div>';
+        $back2='<div class="centered infobox_addtext"><a href="?m=content_detail&id='.$itemid.'">&raquo; To the detail page &raquo;</a></div>';
         $GLOBALS['adlerweb']['tpl']->assign('modul', 'error');
         $GLOBALS['adlerweb']['tpl']->assign('titel',  'Contact successfully recorded!');
         $GLOBALS['adlerweb']['tpl']->assign('errstr', 'The contact has been successfully transferred to the database.');
         $GLOBALS['adlerweb']['tpl']->assign('errico', 'information');
-        infomail("Neuer Kontakt AdAr", print_r($_REQUEST, true));
+        infomail("New contact AdAr", print_r($_REQUEST, true));
     }
 }else{
     $clist = $GLOBALS['adlerweb']['sql']->query("SELECT Alpha2, Name FROM Countries;");
@@ -119,7 +119,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     }
 
     if(!isset($details['Country']) || $details['Country'] == '') {
-        $lang = strtoupper(lang_getfrombrowser ($allowed, 'de', null, false));
+        $lang = strtoupper(lang_getfrombrowser ($allowed, 'na', null, false));
     }else{
         $lang = $details['Country'];
     }

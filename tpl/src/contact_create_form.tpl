@@ -21,17 +21,11 @@
     <fieldset>
         <legend>Address</legend>
         <table>
-<<<<<<< HEAD
             <tr><td><label for="Street">Street:</label></td><td><input type="text" id="Street" {if $details.Street !== null} value="{$details.Street}"{/if} /> 
 			<input type="text" id="Housenr" size="6" {if $details.Housenr !== null} value="{$details.Housenr}"{/if} /></td></tr>
             <tr><td><label for="ZIP">ZIP:</label></td><td><input type="text" id="ZIP" size="6" {if $details.ZIP !== null} value="{$details.ZIP}"{/if} /> 
-=======
-            <tr><td><label for="Street">Straße:</label></td><td><input type="text" id="Street" {if $details.Street !== null} value="{$details.Street}"{/if} /> 
-			<input type="text" id="Housenr" size="6" {if $details.Housenr !== null} value="{$details.Housenr}"{/if} /></td></tr>
-            <tr><td><label for="ZIP">PLZ:</label></td><td><input type="text" id="ZIP" size="6" {if $details.ZIP !== null} value="{$details.ZIP}"{/if} /> 
->>>>>>> cafd3d2555b533fc494e7bf6f18ad4bbfd97f580
 			<input type="text" id="City" {if $details.City !== null} value="{$details.City}"{/if} /></td></tr>
-            <tr><td><label for="Country">Land:</label></td><td>
+            <tr><td><label for="Country">Country:</label></td><td>
                 <select name="Country">
                     {foreach from=$countries item=c}
                         <option value="{$c.Alpha2}" {If $lang == $c.Alpha2}selected="selected"{/if}>{$c.Name}</option>
@@ -44,11 +38,7 @@
     <br />
 
     <fieldset>
-<<<<<<< HEAD
         <legend>Contact Details</legend>
-=======
-        <legend>Dontact Details</legend>
->>>>>>> cafd3d2555b533fc494e7bf6f18ad4bbfd97f580
         <table>
             <tr><td><label for="Phone">Telephone:</label></td><td><input type="text" id="Phone" size="100%" {if $details.Phone !== null} value="{$details.Phone}"{/if} /></td></tr>
             <tr><td><label for="Fax">Fax:</label></td><td><input type="text" id="Fax" size="100%" {if $details.Fax !== null} value="{$details.Fax}"{/if} /></td></tr>
