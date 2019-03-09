@@ -1,12 +1,12 @@
 - search tags
 - user management
 - installer
-- API/Liveforms combine
-- Administration contacts
-- Record Insert API
-- Search: Date ranges / Datepicker
-- forms recognition
-- More file types (Libreoffice API?)
-- GPG instead of SHA256
-- gettext / translations
+- API/Liveforms kombinieren
+- Verwaltung Kontakte
+- Insert-API aufnehmen
+- Suche: Datumsbereiche/Datepicker
+- Formularerkennung
+- Mehr Dateitypen (Libreoffice-API?)
+- GPG statt SHA256
+- gettext / Übersetzungen
 

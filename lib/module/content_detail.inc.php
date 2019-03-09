@@ -1,14 +1,14 @@
 <?PHP
     if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
-        $GLOBALS['adlerweb']['tpl']->assign('titel',  'No authorization');
+        $GLOBALS['adlerweb']['tpl']->assign('titel',  'Keine Berechtigung');
         $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
-        $GLOBALS['adlerweb']['tpl']->assign('errstr', 'You do not have the required rights to access this page.');
+        $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Sie haben nicht die n&ouml;tigen Rechte um diese Seite aufzurufen.');
     }else{
         if(!isset($_GET['id']) || !preg_match('/^[A-Z]{2}_[0-9]{4}$/', $_GET['id'])) {
-            $GLOBALS['adlerweb']['tpl']->assign('titel',  'No entries');
+            $GLOBALS['adlerweb']['tpl']->assign('titel',  'Keine Eintr&auml;ge');
             $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
             $GLOBALS['adlerweb']['tpl']->assign('errico', 'exclamation');
-            $GLOBALS['adlerweb']['tpl']->assign('errstr', 'There are no entries in our archive that match your search criteria.');
+            $GLOBALS['adlerweb']['tpl']->assign('errstr', 'In unserem Archiv befinden sich keine Eintr&auml;ge, welche ihren Suchkriterien entsprechen.');
         }else{
             $id=$_GET['id'];
             $sqlq="SELECT
@@ -29,15 +29,15 @@
             $sqlq.=" LIMIT 1;";
             $detail=$GLOBALS['adlerweb']['sql']->querystmt_single($sqlq, 's', $id);
             if(!$detail) {
-                $GLOBALS['adlerweb']['tpl']->assign('titel',  'No authorization');
+                $GLOBALS['adlerweb']['tpl']->assign('titel',  'Keine Eintr&auml;ge');
                 $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
                 $GLOBALS['adlerweb']['tpl']->assign('errico', 'exclamation');
-                $GLOBALS['adlerweb']['tpl']->assign('errstr', 'There are no entries in our archive that match your search criteria.');
+                $GLOBALS['adlerweb']['tpl']->assign('errstr', 'In unserem Archiv befinden sich keine Eintr&auml;ge, welche ihren Suchkriterien entsprechen.');
             }elseif(!file_exists('data/cache/'.$id.'.png') && !file_exists('data/cache/'.$id.'-0.png')) {
-                $GLOBALS['adlerweb']['tpl']->assign('titel',  'Data Error');
+                $GLOBALS['adlerweb']['tpl']->assign('titel',  'Datenfehler');
                 $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
                 $GLOBALS['adlerweb']['tpl']->assign('errico', 'exclamation');
-                $GLOBALS['adlerweb']['tpl']->assign('errstr', 'The record is corrupt');
+                $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Der Datensatz ist korrupt');
             }else{
                 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'addtag' && $GLOBALS['adlerweb']['session']->session_isloggedin()) {
                     if(!isset($_REQUEST['tag'])) {
@@ -48,7 +48,7 @@
                         http_response_code(400);
                         die();
                     }
-                    infomail("New day picture ".$detail['ItemID'], $_REQUEST['tag']);
+                    infomail("Neuer Tag Bild ".$detail['ItemID'], $_REQUEST['tag']);
                     http_response_code(200);
                     echo '[]';
                     die();
@@ -57,7 +57,7 @@
                         http_response_code(400);
                         die();
                     }
-                    infomail("Tag deleted image ".$detail['ItemID'], $_REQUEST['tag']);
+                    infomail("Tag geloescht Bild ".$detail['ItemID'], $_REQUEST['tag']);
                     http_response_code(200);
                     echo '[]';
                     die();

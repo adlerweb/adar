@@ -1,5 +1,5 @@
 <?PHP
-    /* imgwrapper download protection */
+    /* imgwrapper downloadschutz */
     $adar_notpl=true;
 
     $id=$_GET['id'];

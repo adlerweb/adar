@@ -17,11 +17,6 @@
  * @env AW_SQL_DEBUG_SHOW bool   Display all SQL-queries
  */
  
- @env AW_SQL_SERV       string MySQL localhost
- @env AW_SQL_USER       string MySQL adar
- @env AW_SQL_PASS       string MySQL adar
- @env AW_SQL_DATB       string MySQL adar
- 
 class adlerweb_sql extends mysqli {
     
     /**

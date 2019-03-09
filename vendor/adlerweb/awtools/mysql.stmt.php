@@ -35,11 +35,7 @@ class ATK_mysql {
     public $debug = false;
     
     public function __construct($serv, $user, $pass, $datb) {
-		$serv = "localhost";
-		$user = "adar";
-		$pass = "adar";
-		$datb = "adar";
-        $this->sql = new mysqli($serv, $user, $pass, $datb);
+        $this->sql = new mysqli("localhost", "root", "", "adar");
         $this->errno = $this->sql->connect_errno;
     }
     

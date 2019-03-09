@@ -4,7 +4,7 @@
                             <a href="#" onclick="lightbox_open()"><img src="vendor/koala-framework/library-silkicons/magnifier.png" alt="[Zoom]" /></a>
                             <a href="?m=content_imgwrapper&id={$ItemID}&amp;org=yes"><img src="vendor/koala-framework/library-silkicons/disk.png" alt="[Download]" /></a>
                         </div>
-                        <img src="vendor/koala-framework/library-silkicons/image.png" alt="" /> Preview
+                        <img src="vendor/koala-framework/library-silkicons/image.png" alt="" /> Vorschau
                     </div>
                     <div class="infobox_content">
                         <nobr>
@@ -12,7 +12,7 @@
                                 <img src="?m=content_imgwrapper&id={$ItemID}" alt="Preview of archived item" id="img_prev" onclick="lightbox_open()" />
                             {else}
                                 <img src="?m=content_imgwrapper&id={$ItemID}&amp;page=0" alt="Preview of archived item" id="img_prev" onclick="lightbox_open()" />
-                                <!--@TODO further pages-->
+                                <!--@TODO weitere Seiten-->
                             {/if}
                         </nobr>
                     </div>
@@ -49,35 +49,35 @@
                 {/if}
                 <div class="infobox_half">
                     <div class="infobox_header">
-                        <img src="vendor/koala-framework/library-silkicons/book.png" alt="" /> Description
+                        <img src="vendor/koala-framework/library-silkicons/book.png" alt="" /> Objektbeschreibung
                     </div>
                     <div class="infobox_content">
                         <table>
                             <tr><td>ItemID:</td><td>{$ItemID}</td></tr>
-                            <tr><td>Title:</td><td>{$Caption}</td></tr>
-                            <tr><td>Pages:</td><td>{if $pages}{$pages}{else}1{/if}</td></tr>
+                            <tr><td>Titel:</td><td>{$Caption}</td></tr>
+                            <tr><td>Seiten:</td><td>{if $pages}{$pages}{else}1{/if}</td></tr>
                             <tr><td>Format:</td><td>{$Format}</td></tr>
-                            <tr><td>Content Date:</td><td>{$Date}</td></tr>
+                            <tr><td>Inhaltsdatum:</td><td>{$Date}</td></tr>
                             <tr><td>Intigritätstest:</td><td>{$SourceSHA256}</td></tr>
                         </table>
                     </div>
                 </div>
                 <div class="infobox_half">
                     <div class="infobox_header">
-                        <img src="vendor/koala-framework/library-silkicons/book_open.png" alt="" /> Context
+                        <img src="vendor/koala-framework/library-silkicons/book_open.png" alt="" /> Kontext
                     </div>
                     <div class="infobox_content">
                         <table>
-                            <tr><td>Sender:</td><td><a href="?m=contact_create&amp;id={$S_CID}">{$S_FamilyName}, {$S_GivenName}</a></td></tr>
-                            <tr><td>Receiver:</td><td><a href="?m=contact_create&amp;id={$R_CID}">{$R_FamilyName}, {$R_GivenName}</a></td></tr>
-                            <tr><td>Captured by:</td><td>{$ScanUser}</td></tr>
-                            <tr><td>Recorded on the:</td><td>{$ScanDate}</td></tr>
+                            <tr><td>Absender:</td><td><a href="?m=contact_create&amp;id={$S_CID}">{$S_FamilyName}, {$S_GivenName}</a></td></tr>
+                            <tr><td>Empfänger:</td><td><a href="?m=contact_create&amp;id={$R_CID}">{$R_FamilyName}, {$R_GivenName}</a></td></tr>
+                            <tr><td>Erfasst durch:</td><td>{$ScanUser}</td></tr>
+                            <tr><td>Erfasst am:</td><td>{$ScanDate}</td></tr>
                         </table>
                     </div>
                 </div>
                 <div class="infobox_full">
                     <div class="infobox_header">
-                        <img src="vendor/koala-framework/library-silkicons/note.png" alt="" /> Description
+                        <img src="vendor/koala-framework/library-silkicons/note.png" alt="" /> Beschreibung
                     </div>
                     <div class="infobox_content">
                         <pre>{$Description}</pre>
