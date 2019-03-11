@@ -1,0 +1,14 @@
+{
+    "name": "koala-framework/library-silkicons",
+    "description": "This is the Famfamfam silk icon set, wrapped into an easy to use PHP composer package.",
+    "keywords": ["icons", "famfamfam", "silk"],
+    "homepage": "http://www.famfamfam.com/",
+    "type": "library",
+    "license": "Creative Commons Attribution 2.5 License",
+    "authors": [
+        {
+            "name": "Mark James",
+            "homepage": "http://www.famfamfam.com/"
+        }
+    ]
+}
