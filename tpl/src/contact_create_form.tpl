@@ -21,9 +21,17 @@
     <fieldset>
         <legend>Adresse</legend>
         <table>
+<<<<<<< HEAD
             <tr><td><label for="Street">Straße:</label></td><td><input type="text" id="Street" {if $details.Street !== null} value="{$details.Street}"{/if} /> <input type="text" id="Housenr" size="6" {if $details.Housenr !== null} value="{$details.Housenr}"{/if} /></td></tr>
             <tr><td><label for="ZIP">PLZ:</label></td><td><input type="text" id="ZIP" size="6" {if $details.ZIP !== null} value="{$details.ZIP}"{/if} /> <input type="text" id="City" {if $details.City !== null} value="{$details.City}"{/if} /></td></tr>
             <tr><td><label for="Country">Land:</label></td><td>
+=======
+            <tr><td><label for="Street">Street:</label></td><td><input type="text" id="Street" {if $details.Street !== null} value="{$details.Street}"{/if} /> 
+			<input type="text" id="Housenr" size="6" {if $details.Housenr !== null} value="{$details.Housenr}"{/if} /></td></tr>
+            <tr><td><label for="ZIP">ZIP:</label></td><td><input type="text" id="ZIP" size="6" {if $details.ZIP !== null} value="{$details.ZIP}"{/if} /> 
+			<input type="text" id="City" {if $details.City !== null} value="{$details.City}"{/if} /></td></tr>
+            <tr><td><label for="Country">Country:</label></td><td>
+>>>>>>> c1d1b4578081235e271fe0f89d9f569f480c09aa
                 <select name="Country">
                     {foreach from=$countries item=c}
                         <option value="{$c.Alpha2}" {If $lang == $c.Alpha2}selected="selected"{/if}>{$c.Name}</option>
@@ -36,7 +44,11 @@
     <br />
 
     <fieldset>
+<<<<<<< HEAD
         <legend>Kontaktdaten</legend>
+=======
+        <legend>Contact Details</legend>
+>>>>>>> c1d1b4578081235e271fe0f89d9f569f480c09aa
         <table>
             <tr><td><label for="Phone">Telefon:</label></td><td><input type="text" id="Phone" size="100%" {if $details.Phone !== null} value="{$details.Phone}"{/if} /></td></tr>
             <tr><td><label for="Fax">Fax:</label></td><td><input type="text" id="Fax" size="100%" {if $details.Fax !== null} value="{$details.Fax}"{/if} /></td></tr>

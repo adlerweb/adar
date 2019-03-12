@@ -1,8 +1,13 @@
 <?PHP
     $GLOBALS['adlerweb']['tpl']->assign('titel', 'Anmelden');
     $GLOBALS['adlerweb']['tpl']->assign('menue',  'session_login');
+<<<<<<< HEAD
     $back='<div class="centered infobox_addtext"><a href="javascript:history.go(-1)">&laquo; Zur&uuml;ck &laquo;</a></div>';
     $back2='<div class="centered infobox_addtext"><a href="?m=content_list">&laquo; Zur&uuml;ck &laquo;</a></div>';
+=======
+    $back='<div class="centered infobox_addtext"><a href="javascript:history.go(-1)">&laquo; To main navigation; &laquo;</a></div>';
+    $back2='<div class="centered infobox_addtext"><a href="?m=content_list">&laquo; To main navigation; &laquo;</a></div>';
+>>>>>>> c1d1b4578081235e271fe0f89d9f569f480c09aa
 
     if($GLOBALS['adlerweb']['session']->session_isloggedin()) {
         $GLOBALS['adlerweb']['tpl']->assign('titel',  'Anmeldefehler');

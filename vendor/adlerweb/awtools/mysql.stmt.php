@@ -12,9 +12,7 @@
      * usage of prepared statements
      */
 
-class ATK_mysql {
-
-    /**
+  /**
      * @var mysqli_object MySQLi-connection
      */
     private $sql;
@@ -52,7 +50,7 @@ class ATK_mysql {
      *      array containing intended variables
      *      number of elements must match character count in argument type list
      *      if only one argument is used it may be supplied as string
-     *
+
      * @return bool|int|array returned data
      *         returns false if an error occours
      *         returns number of affected rows as integer for UPDATE/DELETE queries
@@ -73,25 +71,21 @@ class ATK_mysql {
             trigger_error($msg, E_USER_ERROR);
             return false;
         }
-
-        if(!is_array($args)) {
-            $args = array($args);
-        }
-
-        if(strlen($argtypes) != count($args)) {
+  if(strlen($argtypes) != count($args)) {
             $msg = '[SQL] Argument count mismatch';
             if($this->debug >= 1) $msg .= ' - >>'.$sql.'<<"';
             if($this->debug >= 2) $msg .= ' - >>'.print_r($argtypes, true).'<< - >>'.print_r($args, true).'<<"';
             trigger_error($msg, E_USER_ERROR);
             return false;
         }
-
         $msg='';
         if($this->debug >= 3) $msg .= '[SQL] >>'.$sql.'<<"';
         if($this->debug >= 4) $msg .= ' - >>'.print_r($argtypes, true).'<< - >>'.print_r($args, true).'<<"';
         if($msg != '') trigger_error($msg, E_USER_NOTICE);
 
+
         $type = strtoupper(strstr(trim($sql), ' ', true));
+
 
         $stmt = $this->sql->stmt_init();
         if(!$stmt->prepare($sql)) {
@@ -108,6 +102,7 @@ class ATK_mysql {
             if($this->debug >= 2) $msg .= ' - >>'.print_r($argtypes, true).'<< - >>'.print_r($args, true).'<<"';
             trigger_error($msg, E_USER_ERROR);
         }
+
 
         if($type == 'INSERT') return $stmt->insert_id;
         if($type == 'UPDATE') return $stmt->affected_rows;
@@ -131,6 +126,8 @@ class ATK_mysql {
 
         return $items;
     }
+
+
 
     /**
      * Execute SELECT query as prepared statement and return a single element
@@ -162,6 +159,7 @@ class ATK_mysql {
     function querystmt_single($sql, $argtypes, $args, $field=false) {
         $res = $this->querystmt($sql, $argtypes, $args);
 
+
         if(!is_array($res)) return $res;
         if(!$field) return $res[0];
 
@@ -169,6 +167,7 @@ class ATK_mysql {
 
         return $res[0][$field];
     }
+
 
     /**
      * Execute query as standard SQL query
@@ -191,6 +190,8 @@ class ATK_mysql {
         return $ret;
     }
 
+
+
     /**
      * Execute standard SELECT query and return a single element
      *
@@ -208,32 +209,7 @@ class ATK_mysql {
         $res = $this->query($sql);
         if(!$res) return false;
 
-        $ret=$res->fetch_assoc();
-        if(!$field) return $ret;
-
-        if(!isset($ret[$field])) return false;
-
-        return $ret[$field];
-    }
-
-    /**
-     * Internal helper for variable reference compatibility
-     *
-     * 5.3 requires array values as reference while 5.2 works with real values
-     *
-     * @see http://www.php.net/manual/de/mysqli-stmt.bind-param.php#96770
-     */
-    private function util_refValues($arr) {
-        if(strnatcmp(phpversion(),'5.3') >= 0) {
-            $refs = array();
-            foreach($arr as $key => $value)
-                $refs[$key] = &$arr[$key];
-            return $refs;
-        }
-        return $arr;
-    }
-
-    /**
+   /**
      * Check if a dataset exists
      *
      * Check if a row with the named fields exists in the database.
@@ -260,21 +236,7 @@ class ATK_mysql {
             $fields = array($fields);
         }
 
-        $query = 'SELECT COUNT(`'.$this->sql->real_escape_string($fields[0]).'`) AS `count` FROM `'.$this->sql->real_escape_string($table).'` WHERE ';
-
-        foreach($fields as $field) {
-            $field_query[] = '`'.$this->sql->real_escape_string($field).'` = ?';
-        }
-
-        $query .= implode(' AND ', $field_query);
-
-        $check = $this->querystmt($query, $argtypes, $args);
-
-        if($check === false) return false;
-        return $check[0]['count'];
-    }
-
-    /**
+   /**
      * Update or Insert a dataset
      *
      * Checks if a row with the named fields exists in the database. If no row
@@ -299,7 +261,9 @@ class ATK_mysql {
      *      for invalid duplicates here. The keys given here must be mentioned
      *      in Fieldnames. If only one argument is used it may be supplied as
      *      string. If no argument is given all fieldnames are checked
+
      *
+
      * @return bool|int returned data
      *         returns false if an error occours
      *         returns number of affected rows (=1) as integer for UPDATEs
@@ -318,13 +282,7 @@ class ATK_mysql {
             $index = $fields;
         }else if(!is_array($index)) {
             $index = array($index);
-        }
-
-        $index_clean_fields = array();
-        $index_clean_argtype = '';
-        $index_clean_args = array();
-
-        foreach($index as $index_temp) {
+        }        foreach($index as $index_temp) {
             $fi = array_search($index_temp, $fields);
             if($fi === false) {
                 $msg='';
@@ -338,6 +296,7 @@ class ATK_mysql {
             }
         }
 
+
         if(count($index_clean_fields) == 0) {
             $msg='';
             if($this->debug >= 3) $msg .= '[SQL] Update-query unsuccessful - not enough keys to compare!';
@@ -346,17 +305,7 @@ class ATK_mysql {
             return false;
         }
 
-        var_dump($index_clean_fields, $index_clean_argtype, $index_clean_args);
-        $check = $this->querystmt_exists($table, $index_clean_fields, $index_clean_argtype, $index_clean_args);
-
-        $fieldstr = array();
-        foreach($fields as $field) $fieldstr[] = $this->sql->real_escape_string($field);
-
-        if($check === false) return false;
-        if($check === 0) {
-            //insert
-
-            return $this->querystmt(
+          return $this->querystmt(
                                     'INSERT INTO `'.$table.'`
                                     (`'.implode('`, `', $fieldstr).'`)
                                     VALUES
@@ -373,10 +322,12 @@ class ATK_mysql {
                 $updatestr[] = $fieldstr[$i].' = ?';
             }
 
+
             $field_query = array();
             foreach($index_clean_fields as $index_clean_field) {
                 $field_query[] = '`'.$this->sql->real_escape_string($index_clean_field).'` = ?';
             }
+
 
             return $this->querystmt(
                                     'UPDATE `'.$table.'`
@@ -389,7 +340,9 @@ class ATK_mysql {
                                     array_merge($args, $index_clean_args)
                                 );
         }
+
     }
+
 }
 
 
