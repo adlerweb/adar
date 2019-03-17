@@ -3,7 +3,8 @@
 
         <legend>Name</legend>
         <table>
-            <tr><td><label for="FamilyName">Name / Company name:</label></td><td><input type="text" id="FamilyName" size="100%" {if $details.FamilyName !== null} value="{$details.FamilyName}"{/if} /></td><td></td></tr>
+            <tr><td><label for="FamilyName">Name / Company name:</label></td><td>
+			<input type="text" id="FamilyName" size="100%" {if $details.FamilyName !== null} value="{$details.FamilyName}"{/if} /></td><td></td></tr>
             <tr><td><label for="GivenName">First Given Name / Contact Person:</label></td><td><input type="text" id="GivenName"  size="100%" {if $details.GivenName !== null} value="{$details.GivenName}"{/if} /></td><td></td></tr>
             <tr><td><label for="Type">Type:</label></td><td>
                 <select name="Type">
