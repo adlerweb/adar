@@ -2,16 +2,16 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Typ</th>
-            <th>Date</th>
-            <th>Sender</th>
-            <th>Receiver</th>
+            <th>Student Number</th>
+            <th>Name </th>
+            <th>Surname</th>
+            <th>Gender</th>			
+            <th>Course</th>
         </tr>
     </thead>
     <thead>
         <tr>
-            <td><input type="text" id="0"  class="itemlist-input"></td>
+            <td><input type="text" id="0" class="itemlist-input"></td>
             <td><input type="text" id="1" class="itemlist-input"></td>
             <td><input type="text" id="2" class="itemlist-input" ></td>
             <td><input type="text" id="3" class="itemlist-input" ></td>
@@ -20,6 +20,10 @@
         </tr>
     </thead>
 </table>
+
+<a href="?m=student_create">
+<input type="submit" name="a" value="Create new Student" />
+</a>
 
 <script type="text/javascript" language="javascript" >
     $(document).ready(function() {
@@ -34,7 +38,7 @@
             processing: true,
             serverSide: true,
             ajax:{
-                url :"api.php?source=content", // json datasource
+                url :"api.php?source=student", // json datasource
                 type: "post",  // method  , by default get
                 /*error: function(){  // error handling
                     $(".itemlist-error").html("");
@@ -52,3 +56,4 @@
         } );
     } );
 </script>
+

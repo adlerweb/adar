@@ -80,11 +80,8 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
         $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
         $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Es ist ein Datenbankfehler aufgetreten #103.'.$back);
     }else{
-<<<<<<< HEAD
-        //$back2='<div class="centered infobox_addtext"><a href="?m=content_detail&id='.$itemid.'">&raquo; Zur Detailseite &raquo;</a></div>';
-=======
+
         $back2='<div class="centered infobox_addtext"><a href="?m=content_detail&id='.$itemid.'">&raquo; To the detail page &raquo;</a></div>';
->>>>>>> c1d1b4578081235e271fe0f89d9f569f480c09aa
         $GLOBALS['adlerweb']['tpl']->assign('modul', 'error');
         $GLOBALS['adlerweb']['tpl']->assign('titel',  'Kontakt erfolgreich erfasst!');
         $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Der Kontakt wurde erfolgreich in die Datenbank &uuml;bernommen.');
