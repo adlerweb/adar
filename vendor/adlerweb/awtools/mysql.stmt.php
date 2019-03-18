@@ -33,7 +33,11 @@
     public $debug = false;
 
     public function __construct($serv, $user, $pass, $datb) {
-        $this->sql = new mysqli("localhost", "root", "", "adar");
+		$serv = "localhost";
+		$user = "root";
+		$pass = "";
+		$datb = "adar";
+        $this->sql = new mysqli($serv, $user, $pass, $datb);
         $this->errno = $this->sql->connect_errno;
     }
 

@@ -1,22 +1,22 @@
 <form action="index.php" method="POST">
     <fieldset>
 
-        <legend>UserInformation</legend>
+        <legend>Student Registration form</legend>
         <table>
             <tr>
-                <td><label for="GivenName">GivenName:</label></td>
-                <td><input type="text" id="GivenName" {if $details.GivenName !== null} value="{$details.GivenName}"{/if}  /></td>
+                <td><label for="studentNumber">Student Numbermber:</label></td>
+                <td><input type="number" id="studentNumber" {if $details.studentNumber !== null} value="{$details.studentNumber}"{/if}  /></td>
                 <td></td>
-                <!-- <td><label for="FamilyName">FamilyName:</label></td>
-                <td><input type="text" id="FamilyName" {if $details.FamilyName !== null} value="{$details.FamilyName}"{/if}  /></td> -->
             </tr>
             <tr>
-                <td><label for="Nickname">Nickname:</label></td>
-                <td><input type="text" id="Nickname" {if $details.Nickname !== null} value="{$details.Nickname}"{/if} /></td>
+                <td><label for="firstName">First Name:</label></td>
+                <td><input type="text" id="firstName" {if $details.firstName !== null} value="{$details.firstName}"{/if} /></td>
+
                 <td></td>
                 
             </tr>
             <tr>
+
                 <td><label for="Password">Password:</label></td>
                 <td><input type="password" id="Password" {if $details.Password !== null} value="{$details.Password}"{/if} /></td>
                 <td></td>

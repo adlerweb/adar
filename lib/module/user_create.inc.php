@@ -20,7 +20,9 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
         && !$GLOBALS['adlerweb']['sql']->querystmt("INSERT INTO Users VALUES ('', ?, ?, ?, ?, ?, ? )", str_repeat('s', 6), array(
             $_REQUEST['GivenName'],
             $_REQUEST['Nickname'],
+
             $GLOBALS['adlerweb']['session']->session_getNewPasswordHash($_REQUEST['Password']),
+
             $_REQUEST['EMail'],
             $_REQUEST['Level'],
             $_REQUEST['UIdent'],
@@ -42,6 +44,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
                 $_REQUEST['GivenName'],
 				$_REQUEST['Nickname'],
 				$GLOBALS['adlerweb']['session']->session_getNewPasswordHash($_REQUEST['Password']),
+
 				$_REQUEST['EMail'],
 				$_REQUEST['Level'],
 				$_REQUEST['UIdent'],

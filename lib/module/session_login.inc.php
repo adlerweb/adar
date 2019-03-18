@@ -1,6 +1,7 @@
 <?PHP
     $GLOBALS['adlerweb']['tpl']->assign('titel', 'Log In');
     $GLOBALS['adlerweb']['tpl']->assign('menue',  'session_login');
+
     $back='<div class="centered infobox_addtext"><a href="javascript:history.go(-1)">&laquo; To main navigation; &laquo;</a></div>';
     $back2='<div class="centered infobox_addtext"><a href="?m=content_list">&laquo; To main navigation; &laquo;</a></div>';
 

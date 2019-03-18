@@ -9,6 +9,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
 }elseif(isset($_REQUEST['a'])
     && $_REQUEST['a'] == 'To capture'
     && isset($_REQUEST['id'])
+
     && isset($_REQUEST['Dateupload'])
     && isset($_REQUEST['DateModerated'])
     && isset($_REQUEST['lecturerID'])
@@ -28,12 +29,14 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
             $_REQUEST['CoordinatorID'],
             $_REQUEST['clusterID'],
             $_REQUEST['publishStatus'],
+
         ))
     ) {
         $GLOBALS['adlerweb']['tpl']->assign('titel',  'Can not capture');
         $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
         $GLOBALS['adlerweb']['tpl']->assign('errstr', 'There was a database error # 103.'.$back);
     }elseif($_REQUEST['id'] != '0' && !$GLOBALS['adlerweb']['sql']->querystmt("UPDATE papers SET
+
             `Dateupload` = ?,
             `DateModerated` = ?,
             `lecturerID` = ?,
@@ -53,6 +56,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
 				$_REQUEST['CoordinatorID'],
                 $_REQUEST['clusterID'],
 				$_REQUEST['publishStatus'],
+
                 $_REQUEST['id']
             )
         )) {
@@ -60,7 +64,9 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
         $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
         $GLOBALS['adlerweb']['tpl']->assign('errstr', 'There was a database error # 103.'.$back);
     }else{
-        $back2='<div class="centered infobox_addtext"><a href="?m=user_list">&raquo; To the User List &raquo;</a></div>';
+
+        $back2='<div class="centered infobox_addtext"><a href="?m=paper_list">&raquo; To the paper List &raquo;</a></div>';
+
         $GLOBALS['adlerweb']['tpl']->assign('modul', 'error');
         $GLOBALS['adlerweb']['tpl']->assign('titel',  'User successfully recorded!');
         $GLOBALS['adlerweb']['tpl']->assign('errstr', 'The user has been successfully transferred to the database. '.$back2);
@@ -77,6 +83,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     }
 
     $dummy = array(
+
         'Dateupload' => '',
         'DateModerated' => '',
         'lecturerID' => '',
@@ -86,11 +93,14 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
         'clusterID' => '',
         'publishStatus' => '',
         'PaperID' => 0
+
     );
 
     $details = $dummy;
     if(isset($_REQUEST['id'])) {
+
         $details = $GLOBALS['adlerweb']['sql']->querystmt_single("SELECT * FROM papers WHERE `paperID` = ?;", 'i', $_REQUEST['id']);
+
     }
 
     if(!isset($details['Country']) || $details['Country'] == '') {

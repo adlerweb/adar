@@ -20,8 +20,9 @@ define("AW_SQL_DEBUG_SHOW",      false);
 
 define("SMARTY_CACHE",          false);
 
-define("ADAR_PROGNAME",         'AdAr - Another dumb Archive');
+define("ADAR_PROGNAME",         'HONOURS PROJECT REPORT REPOSITORY');
 
 define("ADAR_INFOMAIL_TO",      'doriva17@gmail.com');
+
 define("ADAR_INFOMAIL_FROM",    'ADAR <adar@localhost>');
  ?>
