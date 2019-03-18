@@ -5,46 +5,54 @@ $back='<div class="centered infobox_addtext"><a href="javascript:history.go(-1)"
 if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     $GLOBALS['adlerweb']['tpl']->assign('titel',  'No authorization');
     $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
-    $GLOBALS['adlerweb']['tpl']->assign('errstr', 'You do not have the required rights to enter new Users.'.$back);
+    $GLOBALS['adlerweb']['tpl']->assign('errstr', 'You do not have the required rights to upload new papers.'.$back);
 }elseif(isset($_REQUEST['a'])
     && $_REQUEST['a'] == 'To capture'
     && isset($_REQUEST['id'])
-    && isset($_REQUEST['GivenName'])
-    && isset($_REQUEST['Nickname'])
-    && isset($_REQUEST['Password'])
-    && isset($_REQUEST['EMail'])
-    && isset($_REQUEST['Level'])
-    && isset($_REQUEST['UIdent'])
+    && isset($_REQUEST['Dateupload'])
+    && isset($_REQUEST['DateModerated'])
+    && isset($_REQUEST['lecturerID'])
+    && isset($_REQUEST['ModeratorID'])
+    && isset($_REQUEST['StudentID'])
+    && isset($_REQUEST['CoordinatorID'])
+    && isset($_REQUEST['clusterID'])
+    && isset($_REQUEST['publishStatus'])
 ) {
     if($_REQUEST['id'] == '0'
-        && !$GLOBALS['adlerweb']['sql']->querystmt("INSERT INTO Users VALUES ('', ?, ?, ?, ?, ?, ? )", str_repeat('s', 6), array(
-            $_REQUEST['GivenName'],
-            $_REQUEST['Nickname'],
-            $GLOBALS['adlerweb']['session']->session_getNewPasswordHash($_REQUEST['Password']),
-            $_REQUEST['EMail'],
-            $_REQUEST['Level'],
-            $_REQUEST['UIdent'],
+        && !$GLOBALS['adlerweb']['sql']->querystmt("INSERT INTO papers VALUES ('', ?, ?, ?, ?, ?, ? )", str_repeat('s', 8), array(
+            $_REQUEST['Dateupload'],
+            $_REQUEST['DateModerated'],
+            $_REQUEST['lecturerID'],
+            $_REQUEST['ModeratorID'],
+            $_REQUEST['StudentID'],
+            $_REQUEST['CoordinatorID'],
+            $_REQUEST['clusterID'],
+            $_REQUEST['publishStatus'],
         ))
     ) {
         $GLOBALS['adlerweb']['tpl']->assign('titel',  'Can not capture');
         $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
         $GLOBALS['adlerweb']['tpl']->assign('errstr', 'There was a database error # 103.'.$back);
-    }elseif($_REQUEST['id'] != '0' && !$GLOBALS['adlerweb']['sql']->querystmt("UPDATE Users SET
-            `GivenName` = ?,
-            `Nickname` = ?,
-            `Password` = ?,
-            `EMail` = ?,
-            `Level` = ?,
-            `UIdent` = ?,
+    }elseif($_REQUEST['id'] != '0' && !$GLOBALS['adlerweb']['sql']->querystmt("UPDATE papers SET
+            `Dateupload` = ?,
+            `DateModerated` = ?,
+            `lecturerID` = ?,
+            `ModeratorID` = ?,
+            `StudentID` = ?,
+            `CoordinatorID` = ?,
+            `clusterID` = ?,
+            `publishStatus` = ?,
             WHERE UserID = ?",
-            str_repeat('s', 6).'i',
+            str_repeat('s', 8).'i',
             array(
-                $_REQUEST['GivenName'],
-				$_REQUEST['Nickname'],
-				$GLOBALS['adlerweb']['session']->session_getNewPasswordHash($_REQUEST['Password']),
-				$_REQUEST['EMail'],
-				$_REQUEST['Level'],
-				$_REQUEST['UIdent'],
+                $_REQUEST['Dateupload'],
+				$_REQUEST['DateModerated'],
+				$_REQUEST['lecturerID'],
+				$_REQUEST['ModeratorID'],
+				$_REQUEST['StudentID'],
+				$_REQUEST['CoordinatorID'],
+                $_REQUEST['clusterID'],
+				$_REQUEST['publishStatus'],
                 $_REQUEST['id']
             )
         )) {
@@ -69,19 +77,20 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     }
 
     $dummy = array(
-        'GivenName' => '',
-        'Nickname' => '',
-        'Password' => '',
-        'EMail' => '',
-        'Level' => '',
-        'UIdent' => '',
-        'UserID' => 0
+        'Dateupload' => '',
+        'DateModerated' => '',
+        'lecturerID' => '',
+        'ModeratorID' => '',
+        'StudentID' => '',
+        'CoordinatorID' => '',
+        'clusterID' => '',
+        'publishStatus' => '',
+        'PaperID' => 0
     );
 
     $details = $dummy;
     if(isset($_REQUEST['id'])) {
-		echo "andrew ";
-        $details = $GLOBALS['adlerweb']['sql']->querystmt_single("SELECT * FROM Users WHERE `UserID` = ?;", 'i', $_REQUEST['id']);
+        $details = $GLOBALS['adlerweb']['sql']->querystmt_single("SELECT * FROM papers WHERE `paperID` = ?;", 'i', $_REQUEST['id']);
     }
 
     if(!isset($details['Country']) || $details['Country'] == '') {
@@ -90,9 +99,9 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
         $lang = $details['Country'];
     }
 
-    $GLOBALS['adlerweb']['tpl']->assign('titel', 'User Information');
-    $GLOBALS['adlerweb']['tpl']->assign('modul', 'user_create_form');
-    $GLOBALS['adlerweb']['tpl']->assign('menue', 'user_create');
+    $GLOBALS['adlerweb']['tpl']->assign('titel', 'Paper Information');
+    $GLOBALS['adlerweb']['tpl']->assign('modul', 'paper_create_form');
+    $GLOBALS['adlerweb']['tpl']->assign('menue', 'paper_create');
     $GLOBALS['adlerweb']['tpl']->assign('countries', $countries);
     $GLOBALS['adlerweb']['tpl']->assign('details', $details);
     $GLOBALS['adlerweb']['tpl']->assign('lang', $lang);

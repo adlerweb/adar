@@ -1,11 +1,11 @@
 <?PHP
 
-$back='<div class="centered infobox_addtext"><a href="javascript:history.go(-1)">&laquo; For navigation use &laquo;</a></div>';
+$back='<div class="centered infobox_addtext"><a href="javascript:history.go(-1)">&laquo; Zur&uuml;ck &laquo;</a></div>';
 
 if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
-    $GLOBALS['adlerweb']['tpl']->assign('titel',  'No authorization');
+    $GLOBALS['adlerweb']['tpl']->assign('titel',  'Keine Berechtigung');
     $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
-    $GLOBALS['adlerweb']['tpl']->assign('errstr', 'You do not have the required rights to enter new contacts.'.$back);
+    $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Sie haben nicht die n&ouml;tigen Rechte um neue Kontakte zu erfassen.'.$back);
 }elseif(isset($_REQUEST['a'])
     && $_REQUEST['a'] == 'To capture'
     && isset($_REQUEST['id'])
@@ -40,9 +40,9 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
             $_REQUEST['Notes'],
         ))
     ) {
-        $GLOBALS['adlerweb']['tpl']->assign('titel',  'Can not capture');
+        $GLOBALS['adlerweb']['tpl']->assign('titel',  'Erfassen nicht moeglich');
         $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
-        $GLOBALS['adlerweb']['tpl']->assign('errstr', 'There was a database error # 103.'.$back);
+        $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Es ist ein Datenbankfehler aufgetreten #103.'.$back);
     }elseif($_REQUEST['id'] != '0' && !$GLOBALS['adlerweb']['sql']->querystmt("UPDATE Contacts SET
             `FamilyName` = ?,
             `GivenName` = ?,
@@ -76,14 +76,18 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
                 $_REQUEST['id']
             )
         )) {
-        $GLOBALS['adlerweb']['tpl']->assign('titel',  'Refresh not possible');
+        $GLOBALS['adlerweb']['tpl']->assign('titel',  'Aktualisieren nicht moeglich');
         $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
-        $GLOBALS['adlerweb']['tpl']->assign('errstr', 'There was a database error # 103.'.$back);
+        $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Es ist ein Datenbankfehler aufgetreten #103.'.$back);
     }else{
+<<<<<<< HEAD
+        //$back2='<div class="centered infobox_addtext"><a href="?m=content_detail&id='.$itemid.'">&raquo; Zur Detailseite &raquo;</a></div>';
+=======
         $back2='<div class="centered infobox_addtext"><a href="?m=content_detail&id='.$itemid.'">&raquo; To the detail page &raquo;</a></div>';
+>>>>>>> c1d1b4578081235e271fe0f89d9f569f480c09aa
         $GLOBALS['adlerweb']['tpl']->assign('modul', 'error');
-        $GLOBALS['adlerweb']['tpl']->assign('titel',  'Contact successfully recorded!');
-        $GLOBALS['adlerweb']['tpl']->assign('errstr', 'The contact has been successfully transferred to the database.');
+        $GLOBALS['adlerweb']['tpl']->assign('titel',  'Kontakt erfolgreich erfasst!');
+        $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Der Kontakt wurde erfolgreich in die Datenbank &uuml;bernommen.');
         $GLOBALS['adlerweb']['tpl']->assign('errico', 'information');
         infomail("New contact AdAr", print_r($_REQUEST, true));
     }
@@ -124,7 +128,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
         $lang = $details['Country'];
     }
 
-    $GLOBALS['adlerweb']['tpl']->assign('titel', 'Contact Gathering');
+    $GLOBALS['adlerweb']['tpl']->assign('titel', 'Kontakt Erfassen');
     $GLOBALS['adlerweb']['tpl']->assign('modul', 'contact_create_form');
     $GLOBALS['adlerweb']['tpl']->assign('menue', 'contact_create');
     $GLOBALS['adlerweb']['tpl']->assign('countries', $countries);

@@ -1,10 +1,11 @@
 <?PHP
 
 if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
-    $GLOBALS['adlerweb']['tpl']->assign('titel',  'No authorization');
+    $GLOBALS['adlerweb']['tpl']->assign('titel',  'Keine Berechtigung');
     $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
-    $GLOBALS['adlerweb']['tpl']->assign('errstr', 'You do not have the required rights to access this page.');
+    $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Sie haben nicht die n&ouml;tigen Rechte um diese Seite aufzurufen.');
 }else{
+
     $titel = 'List View'; //list view
 
     $GLOBALS['adlerweb']['tpl']->assign('titel', $titel);
