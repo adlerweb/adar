@@ -1,6 +1,6 @@
 <?PHP
 
-$back='<div class="centered infobox_addtext"><a href="javascript:history.go(-1)">&laquo; Zur&uuml;ck &laquo;</a></div>';
+$back='<div class="centered infobox_addtext"><a href="javascript:history.go(-1)">&laquo; To main navigation &laquo;</a></div>';
 
 if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     $GLOBALS['adlerweb']['tpl']->assign('titel',  'Keine Berechtigung');
@@ -30,7 +30,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
             $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
             $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Die angegebene Datei ist kein Bild oder in einem unbekannten Format. ('.$mime.')'.$back);
         }elseif(!@move_uploaded_file($_FILES['file']['tmp_name'], $target_path)) {
-            $GLOBALS['adlerweb']['tpl']->assign('titel',  'Fehler bei der Erfassung');
+            $GLOBALS['adlerweb']['tpl']->assign('titel',  'Error in the capture');
             $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
             $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Es ist ein unbekannter Fehler bei der Erfassung aufgetreten. Bitte kontaktieren sie den Betreiber.'.$back);
         }else{
@@ -90,7 +90,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
             }
         }
     }
-}elseif(isset($_REQUEST['a']) && $_REQUEST['a'] == 'Erfassen' && isset($_REQUEST['SHA256']) && isset($_REQUEST['ItemID'])) {
+}elseif(isset($_REQUEST['a']) && $_REQUEST['a'] == 'To capture' && isset($_REQUEST['SHA256']) && isset($_REQUEST['ItemID'])) {
     $source_path = "data/tmp/";
     $source_path .= $_REQUEST['SHA256'];
     $target_path = "data/org/";
@@ -182,12 +182,12 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
                 $GLOBALS['adlerweb']['tpl']->assign('titel',  'Archivgut erfolgreich erfasst!');
                 $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Das Archivgut wurde erfolgreich in die Datenbank übernommen.'.$back2);
                 $GLOBALS['adlerweb']['tpl']->assign('errico', 'information');
-                infomail("Neues Archivgut AdAR", $_REQUEST['Caption']);
+                infomail("New Archive AdAR", $_REQUEST['Caption']);
             }
         }
     }
 }else{
-    $GLOBALS['adlerweb']['tpl']->assign('titel', 'Capture - Step 1 of 2');
+    $GLOBALS['adlerweb']['tpl']->assign('titel', 'Erfassen - Schritt 1 von 2');
     $GLOBALS['adlerweb']['tpl']->assign('modul', 'create_upload');
     $GLOBALS['adlerweb']['tpl']->assign('menue', 'content_create');
 }
