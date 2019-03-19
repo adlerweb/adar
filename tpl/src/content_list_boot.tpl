@@ -4,9 +4,9 @@
             <th>ID</th>
             <th>Name</th>
             <th>Typ</th>
-            <th>Datum</th>
-            <th>Absender</th>
-            <th>Empfänger</th>
+            <th>Date</th>
+            <th>Sender</th>
+            <th>Receiver</th>
         </tr>
     </thead>
     <thead>

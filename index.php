@@ -8,8 +8,6 @@
  * @package adar
  * @author Florian Knodt <adar@adlerweb.info>
  */
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', true);
 
 if(!file_exists('config.php') ||!is_readable('config.php')) {
     die('Missing configuration');

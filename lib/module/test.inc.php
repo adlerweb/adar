@@ -126,6 +126,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
 
     $GLOBALS['adlerweb']['tpl']->assign('titel', 'Kontakt Erfassen');
     $GLOBALS['adlerweb']['tpl']->assign('modul', 'contact_create_form');
+    $GLOBALS['adlerweb']['tpl']->assign('modul', 'test');
     $GLOBALS['adlerweb']['tpl']->assign('menue', 'contact_create');
     $GLOBALS['adlerweb']['tpl']->assign('countries', $countries);
     $GLOBALS['adlerweb']['tpl']->assign('details', $details);

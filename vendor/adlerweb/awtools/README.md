@@ -1,4 +1,3 @@
-
 # Adlerweb's PHP Toolkit
 
 This library includes several modules to enhance PHP. All modules instanziate

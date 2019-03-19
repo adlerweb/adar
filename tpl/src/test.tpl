@@ -1,7 +1,7 @@
 <form action="index.php" method="POST">
     <fieldset>
 
-        <legend>Names</legend>
+        <legend>Name</legend>
         <table>
             <tr><td><label for="FamilyName">Name / Firmenname:</label></td><td><input type="text" id="FamilyName" size="100%" {if $details.FamilyName !== null} value="{$details.FamilyName}"{/if} /></td><td></td></tr>
             <tr><td><label for="GivenName">Vorname / Ansprechpartner:</label></td><td><input type="text" id="GivenName"  size="100%" {if $details.GivenName !== null} value="{$details.GivenName}"{/if} /></td><td></td></tr>
