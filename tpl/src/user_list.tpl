@@ -3,23 +3,23 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Typ</th>
-            <th>Date</th>
-            <th>Sender</th>
-            <th>Receiver</th>
+            <th>Nickname</th>
+            <th>Email</th>
         </tr>
     </thead>
     <thead>
         <tr>
-            <td><input type="text" id="0"  class="itemlist-input"></td>
+            <td><input type="text" id="0" class="itemlist-input"></td>
             <td><input type="text" id="1" class="itemlist-input"></td>
             <td><input type="text" id="2" class="itemlist-input" ></td>
             <td><input type="text" id="3" class="itemlist-input" ></td>
-            <td><input type="text" id="4" class="itemlist-input" ></td>
-            <td><input type="text" id="5" class="itemlist-input" ></td>
         </tr>
     </thead>
 </table>
+
+<a href="?m=user_create">
+<input type="submit" name="a" value="Create User" />
+</a>
 
 <script type="text/javascript" language="javascript" >
     $(document).ready(function() {
@@ -34,7 +34,7 @@
             processing: true,
             serverSide: true,
             ajax:{
-                url :"api.php?source=content", // json datasource
+                url :"api.php?source=users", // json datasource
                 type: "post",  // method  , by default get
                 /*error: function(){  // error handling
                     $(".itemlist-error").html("");
@@ -52,3 +52,4 @@
         } );
     } );
 </script>
+

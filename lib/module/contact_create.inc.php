@@ -7,7 +7,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
     $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Sie haben nicht die n&ouml;tigen Rechte um neue Kontakte zu erfassen.'.$back);
 }elseif(isset($_REQUEST['a'])
-    && $_REQUEST['a'] == 'Erfassen'
+    && $_REQUEST['a'] == 'To capture'
     && isset($_REQUEST['id'])
     && isset($_REQUEST['FamilyName'])
     && isset($_REQUEST['GivenName'])
@@ -80,12 +80,14 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
         $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
         $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Es ist ein Datenbankfehler aufgetreten #103.'.$back);
     }else{
-        //$back2='<div class="centered infobox_addtext"><a href="?m=content_detail&id='.$itemid.'">&raquo; Zur Detailseite &raquo;</a></div>';
+
+        $back2='<div class="centered infobox_addtext"><a href="?m=content_detail&id='.$itemid.'">&raquo; To the detail page &raquo;</a></div>';
+
         $GLOBALS['adlerweb']['tpl']->assign('modul', 'error');
         $GLOBALS['adlerweb']['tpl']->assign('titel',  'Kontakt erfolgreich erfasst!');
         $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Der Kontakt wurde erfolgreich in die Datenbank &uuml;bernommen.');
         $GLOBALS['adlerweb']['tpl']->assign('errico', 'information');
-        infomail("Neuer Kontakt AdAr", print_r($_REQUEST, true));
+        infomail("New contact AdAr", print_r($_REQUEST, true));
     }
 }else{
     $clist = $GLOBALS['adlerweb']['sql']->query("SELECT Alpha2, Name FROM Countries;");
@@ -119,7 +121,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     }
 
     if(!isset($details['Country']) || $details['Country'] == '') {
-        $lang = strtoupper(lang_getfrombrowser ($allowed, 'de', null, false));
+        $lang = strtoupper(lang_getfrombrowser ($allowed, 'na', null, false));
     }else{
         $lang = $details['Country'];
     }
