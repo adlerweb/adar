@@ -4,13 +4,12 @@
 
 namespace Composer\Autoload;
 
-<<<<<<< HEAD
-class ComposerStaticInit616a023f1fbd80841cc474f527843718
-=======
 
 class ComposerStaticInit616a023f1fbd80841cc474f527843718
 
->>>>>>> 1109a11e1fb9fa159b102d9d84fca6fc37f90802
+
+
+
 {
     public static $files = array (
         'f084d01b0a599f67676cffef638aa95b' => __DIR__ . '/..' . '/smarty/smarty/libs/bootstrap.php',
