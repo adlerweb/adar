@@ -13,21 +13,23 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     && isset($_REQUEST['dateModerated'])
     && isset($_REQUEST['lecturerId'])
     && isset($_REQUEST['moderatorId'])
-    && isset($_REQUEST['studentId'])
+    && isset($_REQUEST['studentNumber'])
     && isset($_REQUEST['coordinatorId'])
     && isset($_REQUEST['clusterId'])
-    && isset($_REQUEST['publishStatus'])
+    && isset($_REQUEST['publishedStatus'])
+    && isset($_REQUEST['abstract'])
 ) {
     if($_REQUEST['id'] == '0'
-        && !$GLOBALS['adlerweb']['sql']->querystmt("INSERT INTO papers VALUES ('', ?, ?, ?, ?, ?, ?,?,? )", str_repeat('s', 8), array(
+        && !$GLOBALS['adlerweb']['sql']->querystmt("INSERT INTO papers VALUES ('', ?, ?, ?, ?, ?, ?, ?, ?, ? )", str_repeat('s', 9), array(
             $_REQUEST['dateUpload'],
             $_REQUEST['dateModerated'],
             $_REQUEST['lecturerId'],
             $_REQUEST['moderatorId'],
-            $_REQUEST['studentId'],
+            $_REQUEST['studentNumber'],
             $_REQUEST['coordinatorId'],
             $_REQUEST['clusterId'],
-            $_REQUEST['publishStatus'],
+            $_REQUEST['publishedStatus'],
+            $_REQUEST['abstract']
         ))
     ) {
         $GLOBALS['adlerweb']['tpl']->assign('titel',  'Can not capture');
@@ -38,21 +40,23 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
             `dateModerated` = ?,
             `lecturerId` = ?,
             `moderatorId` = ?,
-            `studentId` = ?,
+            `studentNumber` = ?,
             `coordinatorId` = ?,
             `clusterId` = ?,
-            `publishStatus` = ?,
+            `publishedStatus` = ?,
+            `abstract` = ?
             WHERE paperId = ?",
-            str_repeat('s', 8).'i',
+            str_repeat('s', 9).'i',
             array(
         $_REQUEST['dateUpload'],
 				$_REQUEST['dateModerated'],
 				$_REQUEST['lecturerId'],
 				$_REQUEST['moderatorId'],
-				$_REQUEST['studentId'],
+				$_REQUEST['studentNumber'],
 				$_REQUEST['coordinatorId'],
         $_REQUEST['clusterId'],
-				$_REQUEST['publishStatus'],
+				$_REQUEST['publishedStatus'],
+        $_REQUEST['abstract'],
         $_REQUEST['id']
             )
         )) {
@@ -60,10 +64,10 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
         $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
         $GLOBALS['adlerweb']['tpl']->assign('errstr', 'There was a database error # 103.'.$back);
     }else{
-        $back2='<div class="centered infobox_addtext"><a href="?m=user_list">&raquo; To the User List &raquo;</a></div>';
+        $back2='<div class="centered infobox_addtext"><a href="?m=paper_list">&raquo; View Papers &raquo;</a></div>';
         $GLOBALS['adlerweb']['tpl']->assign('modul', 'error');
-        $GLOBALS['adlerweb']['tpl']->assign('titel',  'User successfully recorded!');
-        $GLOBALS['adlerweb']['tpl']->assign('errstr', 'The user has been successfully transferred to the database. '.$back2);
+        $GLOBALS['adlerweb']['tpl']->assign('titel',  'Paper Information was successfully recorded!');
+        $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Paper Information was successfully recorded!. '.$back2);
         $GLOBALS['adlerweb']['tpl']->assign('errico', 'information');
         infomail("New user AdAr", print_r($_REQUEST, true));
     }
@@ -81,16 +85,17 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
         'dateModerated' => '',
         'lecturerId' => '',
         'moderatorId' => '',
-        'studentId' => '',
+        'studentNumber' => '',
         'coordinatorId' => '',
         'clusterId' => '',
-        'publishStatus' => '',
+        'publishedStatus' => '',
+        'abstract' => '',
         'paperId' => 0
     );
 
     $details = $dummy;
     if(isset($_REQUEST['id'])) {
-        $details = $GLOBALS['adlerweb']['sql']->querystmt_single("SELECT * FROM papers WHERE `paperID` = ?;", 'i', $_REQUEST['id']);
+        $details = $GLOBALS['adlerweb']['sql']->querystmt_single("SELECT * FROM papers WHERE `paperId` = ?;", 'i', $_REQUEST['id']);
     }
 
     if(!isset($details['Country']) || $details['Country'] == '') {

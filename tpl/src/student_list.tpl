@@ -21,8 +21,9 @@
     </thead>
 </table>
 
-<a href="?m=user_create">
-<input type="submit" name="a" value="Create User" />
+<a href="?m=student_create">
+<input type="submit" name="a" value="Create new Student" />
+
 </a>
 
 <script type="text/javascript" language="javascript" >

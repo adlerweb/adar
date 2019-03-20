@@ -1,4 +1,4 @@
-<table id="itemlist1"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+<table id="itemlist"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
     <thead>
         <tr>
            <th>Date Moderated</th>
@@ -21,13 +21,13 @@
     </thead-->
 </table>
 
-<a href="?m=user_create">
-<input type="submit" name="a" value="Create User" />
+<a href="?m=paper_create">
+<input type="submit" name="a" value="Record a Paper" />
 </a>
 
 <script type="text/javascript" language="javascript" >
     $(document).ready(function() {
-        var dataTable = $('#itemlist1').DataTable( {
+        var dataTable = $('#itemlist').DataTable( {
             /*dom: 'Bfrtipl',
             buttons: [
                 'selected',
