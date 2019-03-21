@@ -20,7 +20,7 @@ define("AW_SQL_DEBUG_SHOW",      false);
 
 define("SMARTY_CACHE",          false);
 
-define("ADAR_PROGNAME",         'HONOURS PROJECT REPORT REPOSITORY');
+define("ADAR_PROGNAME",         'NUST HONOURS PROJECT DOCUMENT/REPORT REPOSITORY');
 
 define("ADAR_INFOMAIL_TO",      'mafilizho@gmail.com');
 

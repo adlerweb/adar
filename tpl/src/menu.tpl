@@ -7,6 +7,9 @@
             <div class="menu_item {if $menue=='content_create'}menu_item_selected{/if}">
 			<a href="?m=content_create"><img src="vendor/koala-framework/library-silkicons/page_add.png" /> New Data Set</a></div>
 
+		<div class="menu_item {if $menue=='content_create'}menu_item_selected{/if}">
+			<a href="?m=content_create"><img src="vendor/koala-framework/library-silkicons/page_add.png" /> New Paper</a></div>
+
     	    <div class="menu_head">▸ Students & Papers</div>
             <div class="menu_item {if $menue=='contact_create'}menu_item_selected{/if}">
 			<a href="?m=contact_create"><img src="vendor/koala-framework/library-silkicons/user_add.png" /> New contact</a></div>			
