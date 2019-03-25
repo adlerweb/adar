@@ -2,9 +2,10 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Nickname</th>
+            <th>Full Name</th>
+            <th>Username</th>
             <th>Email</th>
+            <th>Access</th>
         </tr>
     </thead>
     <thead>
@@ -12,7 +13,8 @@
             <td><input type="text" id="0" class="itemlist-input"></td>
             <td><input type="text" id="1" class="itemlist-input"></td>
             <td><input type="text" id="2" class="itemlist-input" ></td>
-            <td><input type="text" id="3" class="itemlist-input" ></td>
+            <td><input type="text" id="3" class="itemlist-input" ></td>			
+            <td><input type="text" id="4" class="itemlist-input" ></td>
         </tr>
     </thead>
 </table>

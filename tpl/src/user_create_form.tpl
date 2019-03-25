@@ -4,21 +4,20 @@
         <legend>UserInformation</legend>
         <table>
             <tr>
-                <td><label for="GivenName">GivenName:</label></td>
-                <td><input type="text" id="GivenName" {if $details.GivenName !== null} value="{$details.GivenName}"{/if}  /></td>
+                <td><label for="Name">Name:</label></td>
+                <td><input type="text" id="Name" {if $details.Name !== null} value="{$details.Name}"{/if}  /></td>
                 <td></td>
-                <!-- <td><label for="FamilyName">FamilyName:</label></td>
-                <td><input type="text" id="FamilyName" {if $details.FamilyName !== null} value="{$details.FamilyName}"{/if}  /></td> -->
+                <td><label for="Surname">Surname:</label></td>
+                <td><input type="text" id="Surname" {if $details.Surname !== null} value="{$details.Surname}"{/if}  /></td>
             </tr>
             <tr>
-                <td><label for="Nickname">Nickname:</label></td>
-                <td><input type="text" id="Nickname" {if $details.Nickname !== null} value="{$details.Nickname}"{/if} /></td>
+                <td><label for="Username">Username:</label></td>
+                <td><input type="text" id="Username" {if $details.Username !== null} value="{$details.Username}"{/if} /></td>
                 <td></td>
                 
             </tr>
             <tr>
                 <td><label for="Password">Password:</label></td>
-				
                 <td><input type="password" id="Password" {if $details.Password !== null} value="{$details.Password}"{/if} /></td>
                 <td></td>
                 <!-- <td><label for="ConfirmPassword">ConfirmPassword:</label></td>
@@ -32,7 +31,7 @@
             <tr>
 				<td><label for="Level">Level:</label></td>
 				<td>
-				<select id="Level">
+				<select id="Level" name="Level">
                     <option value="0" {If $details.Level == '0'}selected="selected"{/if}>Not specified</option>
                     <option value="1" {If $details.Level == '1'}selected="selected"{/if}>Administrator</option>
                     <option value="2" {If $details.Level == '2'}selected="selected"{/if}>Moderator</option>

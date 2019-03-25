@@ -9,44 +9,46 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
 }elseif(isset($_REQUEST['a'])
     && $_REQUEST['a'] == 'To capture'
     && isset($_REQUEST['id'])
-    && isset($_REQUEST['GivenName'])
-    && isset($_REQUEST['Nickname'])
+    && isset($_REQUEST['Name'])
+    && isset($_REQUEST['Surname'])
+    && isset($_REQUEST['Username'])
     && isset($_REQUEST['Password'])
     && isset($_REQUEST['EMail'])
-    && isset($_REQUEST['Level'])
     && isset($_REQUEST['UIdent'])
+    && isset($_REQUEST['Level'])
 ) {
     if($_REQUEST['id'] == '0'
-        && !$GLOBALS['adlerweb']['sql']->querystmt("INSERT INTO Users VALUES ('', ?, ?, ?, ?, ?, ? )", str_repeat('s', 6), array(
-            $_REQUEST['GivenName'],
-            $_REQUEST['Nickname'],
-
+        && !$GLOBALS['adlerweb']['sql']->querystmt("INSERT INTO Users VALUES ('', ?, ?, ?, ?, ?, ? )", str_repeat('s', 7), array(
+            $_REQUEST['Name'],
+            $_REQUEST['Surname'],
+            $_REQUEST['Username'],
             $GLOBALS['adlerweb']['session']->session_getNewPasswordHash($_REQUEST['Password']),
-
             $_REQUEST['EMail'],
-            $_REQUEST['Level'],
             $_REQUEST['UIdent'],
+            $_REQUEST['Level'],
         ))
     ) {
         $GLOBALS['adlerweb']['tpl']->assign('titel',  'Can not capture');
         $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
         $GLOBALS['adlerweb']['tpl']->assign('errstr', 'There was a database error # 103.'.$back);
     }elseif($_REQUEST['id'] != '0' && !$GLOBALS['adlerweb']['sql']->querystmt("UPDATE Users SET
-            `GivenName` = ?,
-            `Nickname` = ?,
+            `Name` = ?,
+            `Surname` = ?,
+            `Username` = ?,
             `Password` = ?,
             `EMail` = ?,
-            `Level` = ?,
             `UIdent` = ?,
+            `Level` = ?,
             WHERE UserID = ?",
-            str_repeat('s', 6).'i',
+            str_repeat('s', 6).'i'.'i',
             array(
-                $_REQUEST['GivenName'],
-				$_REQUEST['Nickname'],
+                $_REQUEST['Name'],
+				$_REQUEST['Surname'],
+				$_REQUEST['Username'],
 				$GLOBALS['adlerweb']['session']->session_getNewPasswordHash($_REQUEST['Password']),
 				$_REQUEST['EMail'],
-				$_REQUEST['Level'],
 				$_REQUEST['UIdent'],
+				$_REQUEST['Level'],
                 $_REQUEST['id']
             )
         )) {
@@ -71,18 +73,18 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     }
 
     $dummy = array(
-        'GivenName' => '',
-        'Nickname' => '',
+        'Name' => '',
+        'Surname' => '',
+        'Username' => '',
         'Password' => '',
         'EMail' => '',
-        'Level' => '',
         'UIdent' => '',
+        'Level' => '',
         'UserID' => 0
     );
 
     $details = $dummy;
     if(isset($_REQUEST['id'])) {
-		echo "andrew ";
         $details = $GLOBALS['adlerweb']['sql']->querystmt_single("SELECT * FROM Users WHERE `UserID` = ?;", 'i', $_REQUEST['id']);
     }
 
