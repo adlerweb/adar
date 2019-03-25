@@ -11,7 +11,7 @@
 
     <script type="text/javascript" language="javascript" src="vendor/components/jquery/jquery.min.js"></script>
 
-    <!-- Achtung: Datatables ueüberschreibt .autocomplete von jquery-ui! -->
+    <!-- Attention: Datatables overwrites .autocomplete from jquery-ui! -->
     <link rel="stylesheet" type="text/css" href="vendor/datatables/datatables/media/css/jquery.dataTables.min.css"/>
     <script type="text/javascript" src="vendor/datatables/datatables/media/js/jquery.dataTables.min.js"></script>
 
@@ -29,4 +29,7 @@
         <h1>
             {$ADAR_PROGNAME}
         </h1>
+		<h2>
+            {$titel}
+        </h2>
     </div>

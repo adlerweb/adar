@@ -4,9 +4,9 @@
             <th>ID</th>
             <th>Name</th>
             <th>Typ</th>
-            <th>Datum</th>
-            <th>Absender</th>
-            <th>Empfänger</th>
+            <th>Date</th>
+            <th>Sender</th>
+            <th>Receiver</th>
         </tr>
     </thead>
     <thead>
@@ -34,7 +34,7 @@
             processing: true,
             serverSide: true,
             ajax:{
-                url :"api.php", // json datasource
+                url :"api.php?source=content", // json datasource
                 type: "post",  // method  , by default get
                 /*error: function(){  // error handling
                     $(".itemlist-error").html("");
