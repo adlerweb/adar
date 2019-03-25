@@ -22,8 +22,11 @@
 </table>
 
 <a href="?m=student_create">
-<input type="submit" name="a" value="Create new Student" />
-
+<input type="submit" name="a" value="Create new Student" /><br/>
+</a>
+</br>
+<a href="?m=create_upload_preview_students">
+<input type="submit" name="a" value="Upload Student List" />
 </a>
 
 <script type="text/javascript" language="javascript" >
