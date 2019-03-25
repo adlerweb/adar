@@ -44,7 +44,6 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
                 $_REQUEST['GivenName'],
 				$_REQUEST['Nickname'],
 				$GLOBALS['adlerweb']['session']->session_getNewPasswordHash($_REQUEST['Password']),
-
 				$_REQUEST['EMail'],
 				$_REQUEST['Level'],
 				$_REQUEST['UIdent'],

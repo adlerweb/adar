@@ -18,6 +18,7 @@
             </tr>
             <tr>
                 <td><label for="Password">Password:</label></td>
+				
                 <td><input type="password" id="Password" {if $details.Password !== null} value="{$details.Password}"{/if} /></td>
                 <td></td>
                 <!-- <td><label for="ConfirmPassword">ConfirmPassword:</label></td>
@@ -30,7 +31,16 @@
 			</tr>
             <tr>
 				<td><label for="Level">Level:</label></td>
-				<td><input type="text" id="Level" {if $details.Level !== null} value="{$details.Level}"{/if} /></td>
+				<td>
+				<select id="Level">
+                    <option value="0" {If $details.Level == '0'}selected="selected"{/if}>Not specified</option>
+                    <option value="1" {If $details.Level == '1'}selected="selected"{/if}>Administrator</option>
+                    <option value="2" {If $details.Level == '2'}selected="selected"{/if}>Moderator</option>
+                    <option value="3" {If $details.Level == '3'}selected="selected"{/if}>Supervisor</option>
+                    <option value="4" {If $details.Level == '4'}selected="selected"{/if}>Coordinator</option>
+                    <option value="5" {If $details.Level == '5'}selected="selected"{/if}>Student</option>
+                </select>
+				</td>
 				<td></td>
 				<td><label for="UIdent">UIdent:</label></td>
 				<td><input type="text" id="UIdent" {if $details.UIdent !== null} value="{$details.UIdent}"{/if} /></td>
