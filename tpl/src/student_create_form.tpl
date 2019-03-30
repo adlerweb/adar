@@ -33,6 +33,7 @@
         </table>
     </fieldset><br />
 
+
     <input type="hidden" name="m" value="student_create" />
     <input type="hidden" name="id" value="{if $details.studentID !== null}{$details.studentID}{else}0{/if}" />
     <input type="submit" name="a" value="To capture" />

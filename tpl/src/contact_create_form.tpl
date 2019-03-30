@@ -1,3 +1,4 @@
+
 <form action="index.php" method="POST">
     <fieldset>
 
@@ -61,3 +62,4 @@
     <input type="hidden" name="id" value="{if $details.CID !== null}{$details.CID}{else}0{/if}" />
     <input type="submit" name="a" value="To capture" />
 </form>
+

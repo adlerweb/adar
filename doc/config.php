@@ -9,9 +9,9 @@
 //@env AW_SQL_DEBUG_SHOW bool   Display all SQL-queries
 
 
-defined('AW_SQL_SERV',localhost);
-defined('AW_SQL_USER',adar);
-defined('AW_SQL_PASS',adar);
-defined('AW_SQL_PASS',adar);
-//defined('AW_SQL_SERV');
+defined('AW_SQL_SERV',localhost)
+defined('AW_SQL_USER',root)
+defined('AW_SQL_PASS', )
+defined('AW_SQL_PASS', )
+//defined('AW_SQL_SERV')
 ?>

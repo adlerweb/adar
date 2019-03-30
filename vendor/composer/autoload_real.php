@@ -5,8 +5,6 @@
 
 class ComposerAutoloaderInit616a023f1fbd80841cc474f527843718
 
-
-
 {
     private static $loader;
 
@@ -23,9 +21,9 @@ class ComposerAutoloaderInit616a023f1fbd80841cc474f527843718
             return self::$loader;
         }
 
-
-        spl_autoload_register(array('ComposerAutoloaderInit616a023f1fbd80841cc474f527843718', 'loadClassLoader'), true, true);
+        spl_autoload_register(array('ComposerAutoloaderInit71f2f6dba8c8a0888e3bc03cd4f40999', 'loadClassLoader'), true, true);
         self::$loader = $loader = new \Composer\Autoload\ClassLoader();
+
         spl_autoload_unregister(array('ComposerAutoloaderInit616a023f1fbd80841cc474f527843718', 'loadClassLoader'));
 
 
@@ -42,7 +40,6 @@ class ComposerAutoloaderInit616a023f1fbd80841cc474f527843718
 
 
             call_user_func(\Composer\Autoload\ComposerStaticInit616a023f1fbd80841cc474f527843718::getInitializer($loader));
-
 
         } else {
             $map = require __DIR__ . '/autoload_namespaces.php';
@@ -81,7 +78,6 @@ class ComposerAutoloaderInit616a023f1fbd80841cc474f527843718
 
             composerRequire616a023f1fbd80841cc474f527843718($fileIdentifier, $file);
 
-
         }
 
         return $loader;
@@ -90,7 +86,6 @@ class ComposerAutoloaderInit616a023f1fbd80841cc474f527843718
 
 
 function composerRequire616a023f1fbd80841cc474f527843718($fileIdentifier, $file)
-
 
 
 

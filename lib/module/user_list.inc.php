@@ -12,11 +12,5 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     $GLOBALS['adlerweb']['tpl']->assign('menue', 'user_list');
 	
 }
-
-	function getUsers() {
-    //if(!preg_match("|^(.+), ([^,]*)$|", $name, $match)) return false;
-    $detail=$GLOBALS['adlerweb']['sql']->query("SELECT UserID, Name, Nickname, EMail, Level, UIdent FROM users");
-    if(!$detail) return false;
-    return $detail;
-}
 ?>
+

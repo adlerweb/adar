@@ -1,24 +1,28 @@
+
 <table id="itemlist"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Nickname</th>
-            <th>Email</th>
+          <th>Paper Id</th>
+           <th>Date Moderated</th>
+            <th>Date Uploadeds</th>
+            <th>Published Status</th>
+            <th>Student Number</th>
+
         </tr>
     </thead>
-    <thead>
+    <!--thead>
         <tr>
             <td><input type="text" id="0" class="itemlist-input"></td>
             <td><input type="text" id="1" class="itemlist-input"></td>
             <td><input type="text" id="2" class="itemlist-input" ></td>
             <td><input type="text" id="3" class="itemlist-input" ></td>
+
         </tr>
-    </thead>
+    </thead-->
 </table>
 
-<a href="?m=user_create">
-<input type="submit" name="a" value="Create User" />
+<a href="?m=paper_create">
+<input type="submit" name="a" value="Record a Paper" />
 </a>
 
 <script type="text/javascript" language="javascript" >
@@ -34,7 +38,7 @@
             processing: true,
             serverSide: true,
             ajax:{
-                url :"api.php?source=paper", // json datasource
+                url :"api.php?source=papers", // json datasource
                 type: "post",  // method  , by default get
                 /*error: function(){  // error handling
                     $(".itemlist-error").html("");

@@ -1,3 +1,4 @@
+
     <div id="menu">
         {if $loginlevel >= 2}
             <div class="menu_head">▸ Investigation</div>
