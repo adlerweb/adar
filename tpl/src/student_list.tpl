@@ -26,7 +26,8 @@
 </a>
 </br>
 <a href="?m=create_upload_preview_students">
-<input type="submit" name="a" value="Upload Student List" />
+
+<input type="submit" name="a" value="Automatic load students from excel file" class="spacer" />
 
 </a>
 
