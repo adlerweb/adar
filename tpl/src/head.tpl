@@ -29,4 +29,7 @@
         <h1>
             {$ADAR_PROGNAME}
         </h1>
+		<h2>
+            {$titel}
+        </h2>
     </div>

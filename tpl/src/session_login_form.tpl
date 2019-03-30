@@ -1,6 +1,6 @@
     <div class="infobox">
         <div class="infobox_header">
-            <img src="vendor/koala-framework/library-silkicons/key.png" alt="" /> Anmeldung
+            <img src="vendor/koala-framework/library-silkicons/key.png" alt="" /> Login Form
         </div>
         <div class="infobox_content">
             <form method="POST" action="?m=session_login">
