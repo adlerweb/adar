@@ -18,7 +18,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     && isset($_REQUEST['Level'])
 ) {
     if($_REQUEST['id'] == '0'
-        && !$GLOBALS['adlerweb']['sql']->querystmt("INSERT INTO Users VALUES ('', ?, ?, ?, ?, ?, ? )", str_repeat('s', 7), array(
+        && !$GLOBALS['adlerweb']['sql']->querystmt("INSERT INTO Users VALUES ('', ?, ?, ?, ?, ?, ? , ?)", str_repeat('s', 6).'i', array(
             $_REQUEST['Name'],
             $_REQUEST['Surname'],
             $_REQUEST['Username'],
@@ -64,12 +64,12 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
         infomail("New user AdAr", print_r($_REQUEST, true));
     }
 }else{
-    $clist = $GLOBALS['adlerweb']['sql']->query("SELECT Alpha2, Name FROM Countries;");
-    $countries = array();
+    $rlist = $GLOBALS['adlerweb']['sql']->query("SELECT roleID, roleName FROM roles;");
+    $roles = array();
     $allowed = array();
-    while($item = $clist->fetch_assoc()) {
-        $countries[]=$item;
-        $allowed[]=strtolower($item['Alpha2']);
+    while($item = $rlist->fetch_assoc()) {
+        $roles[]=$item;
+        $allowed[]=strtolower($item['roleID']);
     }
 
     $dummy = array(
@@ -88,16 +88,16 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
         $details = $GLOBALS['adlerweb']['sql']->querystmt_single("SELECT * FROM Users WHERE `UserID` = ?;", 'i', $_REQUEST['id']);
     }
 
-    if(!isset($details['Country']) || $details['Country'] == '') {
+    if(!isset($details['Level']) || $details['Level'] == '') {
         $lang = strtoupper(lang_getfrombrowser ($allowed, 'na', null, false));
     }else{
-        $lang = $details['Country'];
+        $lang = $details['Level'];
     }
 
     $GLOBALS['adlerweb']['tpl']->assign('titel', 'User Information');
     $GLOBALS['adlerweb']['tpl']->assign('modul', 'user_create_form');
     $GLOBALS['adlerweb']['tpl']->assign('menue', 'user_create');
-    $GLOBALS['adlerweb']['tpl']->assign('countries', $countries);
+    $GLOBALS['adlerweb']['tpl']->assign('roles', $roles);
     $GLOBALS['adlerweb']['tpl']->assign('details', $details);
     $GLOBALS['adlerweb']['tpl']->assign('lang', $lang);
 }

@@ -33,12 +33,15 @@
 				<td><label for="Level">Level:</label></td>
 				<td>
 				<select id="Level" name="Level">
-                    <option value="0" {If $details.Level == '0'}selected="selected"{/if}>Not specified</option>
+                	{foreach from=$roles item=c}
+                        <option value="{$c.roleID}" {If $lang == $c.roleID}selected="selected"{/if}>{$c.roleName}</option>
+                    {/foreach}
+                    <!-- <option value="0" {If $details.Level == '0'}selected="selected"{/if}>Not specified</option>
                     <option value="1" {If $details.Level == '1'}selected="selected"{/if}>Administrator</option>
                     <option value="2" {If $details.Level == '2'}selected="selected"{/if}>Moderator</option>
                     <option value="3" {If $details.Level == '3'}selected="selected"{/if}>Supervisor</option>
                     <option value="4" {If $details.Level == '4'}selected="selected"{/if}>Coordinator</option>
-                    <option value="5" {If $details.Level == '5'}selected="selected"{/if}>Student</option>
+                    <option value="5" {If $details.Level == '5'}selected="selected"{/if}>Student</option> -->
                 </select>
 				</td>
 				<td></td>
