@@ -95,5 +95,14 @@ function lang_getfrombrowser ($allowed_languages, $default_language, $lang_varia
         // to return the found language
         return $current_lang;
 }
+// fucntion to check if email is valid
+function checkemail($email2){
+	
+if(eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $email2)) 
+return true;
+else 
+return false;
+
+}
 
 ?>

@@ -4,10 +4,12 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit71f2f6dba8c8a0888e3bc03cd4f40999
+
+class ComposerStaticInit616a023f1fbd80841cc474f527843718
+
+
 {
-    public static $files = array (
-        'f084d01b0a599f67676cffef638aa95b' => __DIR__ . '/..' . '/smarty/smarty/libs/bootstrap.php',
+    public static $files = array ('f084d01b0a599f67676cffef638aa95b' => __DIR__ . '/..' . '/smarty/smarty/libs/bootstrap.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -5,7 +5,7 @@
             <th>Student Number</th>
             <th>Name </th>
             <th>Surname</th>
-            <th>Gender</th>			
+            <th>Gender</th>
             <th>Course</th>
         </tr>
     </thead>
@@ -22,7 +22,12 @@
 </table>
 
 <a href="?m=student_create">
-<input type="submit" name="a" value="Create new Student" />
+<input type="submit" name="a" value="Create new Student" /><br/>
+</a>
+</br>
+<a href="?m=create_upload_preview_students">
+
+<input type="submit" name="a" value="Automatic load students from excel file" class="spacer" />
 
 </a>
 
@@ -57,4 +62,3 @@
         } );
     } );
 </script>
-

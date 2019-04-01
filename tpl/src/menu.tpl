@@ -1,3 +1,4 @@
+
     <div id="menu">
         {if $loginlevel >= 2}
             <div class="menu_head">▸ Investigation</div>
@@ -6,13 +7,18 @@
             <div class="menu_head">▸ To capture</div>
             <div class="menu_item {if $menue=='content_create'}menu_item_selected{/if}">
 			<a href="?m=content_create"><img src="vendor/koala-framework/library-silkicons/page_add.png" /> New Data Set</a></div>
-    	    <div class="menu_head">▸ Contacts</div>
+
+		<div class="menu_item {if $menue=='content_create'}menu_item_selected{/if}">
+			<a href="?m=content_create"><img src="vendor/koala-framework/library-silkicons/page_add.png" /> New Paper</a></div>
+
+    	    <div class="menu_head">▸ Students & Papers</div>
             <div class="menu_item {if $menue=='contact_create'}menu_item_selected{/if}">
 			<a href="?m=contact_create"><img src="vendor/koala-framework/library-silkicons/user_add.png" /> New contact</a></div>
-            <div class="menu_item {if $menue=='paper_create'}menu_item_selected{/if}">
-			<a href="?m=paper_create"><img src="vendor/koala-framework/library-silkicons/page_add.png" /> New Paper</a></div>
+            <div class="menu_item {if $menue=='paper_list'}menu_item_selected{/if}">
+			<a href="?m=paper_list"><img src="vendor/koala-framework/library-silkicons/user_add.png" /> Paper Lists</a></div>
             <div class="menu_item {if $menue=='student_list'}menu_item_selected{/if}">
-			<a href="?m=student_list"><img src="vendor/koala-framework/library-silkicons/table.png" /> Student List</a></div>
+			<a href="?m=student_list"><img src="vendor/koala-framework/library-silkicons/user_add.png" /> Student List</a></div>
+
     	{/if}
         <div class="menu_head">▸ Administration</div>
         {if $loginlevel <1}

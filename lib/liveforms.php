@@ -2,7 +2,7 @@
 /**
  * DiFlAS - Digitales Flachgut-Archiv Saffig
  *
- * System zur Archivierung von Fotos und Dokumenten
+ * System for archiving photos and documents
  *
  * @package diflas
  * @author Florian "adlerweb" Knodt <adlerweb@adlerweb.info>
@@ -14,11 +14,11 @@ require_once('mysql.wrapper.php');
 require_once('../vendor/adlerweb/awtools/session.php');
 
 if(!isset($_GET['q']) || !isset($_GET['m'])) {
-    die('Fehler…');
+    die('Error…');
 }
 
 if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
-    die('Bitte anmelden…');
+    die('Please login…');
 }
 
 $q=urldecode($_GET['q']);
@@ -60,7 +60,7 @@ switch($_GET['m']) {
         echo json_encode($out);
         exit();
     default:
-        die('Fehler…');
+        die('Error…');
 }
 
 ?>
