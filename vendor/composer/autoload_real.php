@@ -21,7 +21,7 @@ class ComposerAutoloaderInit616a023f1fbd80841cc474f527843718
             return self::$loader;
         }
 
-        spl_autoload_register(array('ComposerAutoloaderInit71f2f6dba8c8a0888e3bc03cd4f40999', 'loadClassLoader'), true, true);
+        spl_autoload_register(array('ComposerAutoloaderInit616a023f1fbd80841cc474f527843718', 'loadClassLoader'), true, true);
         self::$loader = $loader = new \Composer\Autoload\ClassLoader();
 
         spl_autoload_unregister(array('ComposerAutoloaderInit616a023f1fbd80841cc474f527843718', 'loadClassLoader'));

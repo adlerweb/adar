@@ -32,11 +32,9 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
         }elseif(!@move_uploaded_file($_FILES['file']['tmp_name'], $target_path)) {
             $GLOBALS['adlerweb']['tpl']->assign('titel',  'Error in the capture');
             $GLOBALS['adlerweb']['tpl']->assign('modul',  'error');
-<<<<<<< HEAD
+
             $GLOBALS['adlerweb']['tpl']->assign('errstr', 'An unknown error occurred during capture.'.$back);
-=======
-            $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Es ist ein unbekannter Fehler bei der Erfassung aufgetreten. Bitte kontaktieren sie den Betreiber.'.$back);
->>>>>>> 0bf118a199690b3852a2d5a026905948aba25154
+
         }else{
 
             if(preg_match('/[A-Z][A-Z]+_(\d{4})\./', $_FILES['file']['name'], $match)) {
