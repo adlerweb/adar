@@ -8,7 +8,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     $GLOBALS['adlerweb']['tpl']->assign('errstr', 'Sie haben nicht die n&ouml;tigen Rechte um neue Archivst&uuml;cke zu erfassen.'.$back);
 }elseif(isset($_REQUEST['a']) && $_REQUEST['a'] == 'Upload') {
     //File
-    $target_path = "data/tmp/";
+    $target_path = "data/tmp";
 
     if(!isset($_FILES['file']['tmp_name']) || $_FILES['file']['tmp_name'] == '') {
         $GLOBALS['adlerweb']['tpl']->assign('titel',  'Fehler bei der Erfassung');
