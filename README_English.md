@@ -1,5 +1,4 @@
-# AdAr - Another dumb Archive
-
+# AdAr - Another dumb Archive..
 (sorry, ATM german only)
 
 AdAr is a further development based on the system "DiBaS (Digital Image Archive Saffig)", which was developed for the archiving of the photo collection of the history association Saffig. In this project, the system was supplemented by document-relevant functions such as OCR, contact management and others.
