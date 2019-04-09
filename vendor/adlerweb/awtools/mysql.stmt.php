@@ -68,8 +68,10 @@ class ATK_mysql {
      *
      * @see http://www.moyablog.com/2012/01/20/wrapper-php-classes-for-prepared-statements-queries/
      **/
-    public function querystmt($sql, $argtypes, $args) {
-        if(strlen($argtypes) <1) {
+    public function querystmt($sql, $argtypes, $args)
+    {
+        if(strlen($argtypes) <1)
+        {
             $msg = '[SQL] Argument types missing';
             if($this->debug >= 1) $msg .= ' - >>'.$sql.'<<"';
             if($this->debug >= 2) $msg .= ' - >>'.print_r($argtypes, true).'<< - >>'.print_r($args, true).'<<"';

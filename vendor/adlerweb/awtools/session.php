@@ -72,7 +72,7 @@ class adlerweb_session {
         if(!isset($GLOBALS['adlerweb']['sql'])) {
 
         }
-        $check=$GLOBALS['adlerweb']['sql']->querystmt_single("SELECT UserID,Password,Level,UIdent,Name FROM Users WHERE Nickname=? LIMIT 1;", 's', $user);
+        $check=$GLOBALS['adlerweb']['sql']->querystmt_single("SELECT UserID,Password,Level,UIdent,Name FROM Users WHERE username=? LIMIT 1;", 's', $user);
         if(!$check) {
             $_SESSION['adlerweb']['session']['retrycount']++;
             $this->lasterror='User not found';

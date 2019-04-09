@@ -1,6 +1,6 @@
 
     <div id="menu">
-        {if $loginlevel >= 2}
+        {if $loginlevel >= 1}
             <div class="menu_head">▸ Investigation</div>
             <div class="menu_item {if $menue=='content_list'}menu_item_selected{/if}">
 			<a href="?m=content_list"><img src="vendor/koala-framework/library-silkicons/table.png" /> All Entries</a></div>
@@ -8,8 +8,11 @@
             <div class="menu_item {if $menue=='content_create'}menu_item_selected{/if}">
 			<a href="?m=content_create"><img src="vendor/koala-framework/library-silkicons/page_add.png" /> New Data Set</a></div>
 
-		<div class="menu_item {if $menue=='paper_create'}menu_item_selected{/if}">
+	    <div class="menu_item {if $menue=='paper_create'}menu_item_selected{/if}">
 			<a href="?m=paper_create"><img src="vendor/koala-framework/library-silkicons/page_add.png" /> New Paper</a></div>
+
+	    <div class="menu_item {if $menue=='paper_create'}menu_item_selected{/if}">
+			<a href="?m=paper_create"><img src="vendor/koala-framework/library-silkicons/page_add.png" /> New Cluster</a></div>
 
     	    <div class="menu_head">▸ Students & Papers</div>
             <div class="menu_item {if $menue=='contact_create'}menu_item_selected{/if}">
@@ -28,7 +31,7 @@
     	{if $loginlevel >= 1}
             <div class="menu_item {if $menue=='session_logout'}menu_item_selected{/if}"><a href="?m=session_logout"><img src="vendor/koala-framework/library-silkicons/lock_break.png" /> Sign out</a></div>
     	{/if}
-    	{if $loginlevel >= 192}
+    	{if $loginlevel >= 1}
             <div class="menu_item {if $menue=='user_list'}menu_item_selected{/if}">
 			<a href="?m=user_list">
 			<img src="vendor/koala-framework/library-silkicons/user.png" /> User Management</a></div>
