@@ -11,8 +11,8 @@
 	    <div class="menu_item {if $menue=='paper_create'}menu_item_selected{/if}">
 			<a href="?m=paper_create"><img src="vendor/koala-framework/library-silkicons/page_add.png" /> New Paper</a></div>
 
-	    <div class="menu_item {if $menue=='paper_create'}menu_item_selected{/if}">
-			<a href="?m=paper_create"><img src="vendor/koala-framework/library-silkicons/page_add.png" /> New Cluster</a></div>
+	    <div class="menu_item {if $menue=='cluster_create'}menu_item_selected{/if}">
+			<a href="?m=cluster_create"><img src="vendor/koala-framework/library-silkicons/page_add.png" /> New Cluster</a></div>
 
     	    <div class="menu_head">▸ Students & Papers</div>
             <div class="menu_item {if $menue=='contact_create'}menu_item_selected{/if}">
