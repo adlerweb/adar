@@ -8,13 +8,11 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     $GLOBALS['adlerweb']['tpl']->assign('errstr', 'You do not have the required rights to upload new clusters.'.$back);
 }elseif(isset($_REQUEST['a'])
     && $_REQUEST['a'] == 'To capture'
-    && isset($_REQUEST['clusterId'])
     && isset($_REQUEST['clustername'])
     && isset($_REQUEST['Description'])
 ) {
     if($_REQUEST['id'] == '0'
-        && !$GLOBALS['adlerweb']['sql']->querystmt("INSERT INTO cluster VALUES ('', ?, ? )", str_repeat('s', 3), array(
-            $_REQUEST['clusterId'],
+        && !$GLOBALS['adlerweb']['sql']->querystmt("INSERT INTO cluster VALUES ('', ?, ? )", str_repeat('s', 2), array(
             $_REQUEST['clustername'],
             $_REQUEST['Description']
         ))
@@ -59,44 +57,30 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
         infomail("New user AdAr", print_r($_REQUEST, true));
     }
 }else{
-    $ulist = $GLOBALS['adlerweb']['sql']->query("SELECT UserID, Name FROM users;");
+    $ulist = $GLOBALS['adlerweb']['sql']->query("SELECT clusterId, clustername FROM cluster;");
     $users = array();
     $allowed = array();
     while($item = $ulist->fetch_assoc()) {
         $users[]=$item;
-        $allowed[]=strtolower($item['UserID']);
+        $allowed[]=strtolower($item['clusterId']);
     }
 
     $dummy = array(
-        'dateUpload' => '',
-        'dateModerated' => '',
-        'lecturerId' => '',
-        'moderatorId' => '',
-        'studentNumber' => '',
-        'coordinatorId' => '',
-        'clusterId' => '',
-        'publishedStatus' => '',
-        'abstract' => '',
-        'paperId' => 0
+        'Description' => '',
+        'clustername' => '',
+        'clusterId' => 0
     );
 
     $details = $dummy;
     if(isset($_REQUEST['id'])) {
-        $details = $GLOBALS['adlerweb']['sql']->querystmt_single("SELECT * FROM papers WHERE `paperId` = ?;", 'i', $_REQUEST['id']);
+        $details = $GLOBALS['adlerweb']['sql']->querystmt_single("SELECT * FROM cluster WHERE `clusterId` = ?;", 'i', $_REQUEST['id']);
     }
+  
 
-    if(!isset($details['Country']) || $details['Country'] == '') {
-        $lang = strtoupper(lang_getfrombrowser ($allowed, 'na', null, false));
-    }else{
-        $lang = $details['Country'];
-    }
-
-    $GLOBALS['adlerweb']['tpl']->assign('titel', 'Paper Information');
+    $GLOBALS['adlerweb']['tpl']->assign('titel', 'Cluster Information');
     $GLOBALS['adlerweb']['tpl']->assign('modul', 'cluster_create_form');
     $GLOBALS['adlerweb']['tpl']->assign('menue', 'cluster_create');
-    $GLOBALS['adlerweb']['tpl']->assign('countries', $countries);
     $GLOBALS['adlerweb']['tpl']->assign('users', $users);
     $GLOBALS['adlerweb']['tpl']->assign('details', $details);
-    $GLOBALS['adlerweb']['tpl']->assign('lang', $lang);
 }
 ?>
