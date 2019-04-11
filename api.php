@@ -450,12 +450,9 @@ elseif($requestData['source']=="cluster"){
     //student management
     $columns = array(
 // datatable column index  => database column name
-    0 => array(false, 'studentID', false),
-    1 => array(false, 'studentNumber', false),
-    2 => array(false, 'firstName', false),
-    3 => array(false, 'surname', false),
-    4 => array(false, 'gender', false),
-    5 => array(false, 'course', false)
+    0 => array(false, 'clusterId', false),
+    1 => array(false, 'clustername', false),
+    2 => array(false, 'Description', false)
 );
 
 $colout = array();
@@ -483,11 +480,11 @@ foreach($columns as $col) {
 $sql_data = "SELECT ";
 $sql_data .= implode(", ", $colout);
 
-$sql_data .= " FROM Student";
+$sql_data .= " FROM cluster";
 
-$sql_anz = "SELECT COUNT(`Student`.`studentID`) as anz ";
+$sql_anz = "SELECT COUNT(`cluster`.`clusterId`) as anz ";
 
-$sql_anz .= " FROM Student ";
+$sql_anz .= " FROM cluster ";
 
 
 // getting total number records without any external filters

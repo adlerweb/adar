@@ -5,8 +5,6 @@
             <th>cluster Name</th>
 
             <th>Description</th>
-<!--             <th>Published Status</th>
--->
         </tr>
     </thead>
     <!--thead>
