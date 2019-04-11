@@ -1,10 +1,12 @@
 <table id="itemlist"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
     <thead>
         <tr>
-            <th>Cluster Id</th>
-            <th>Cluster Name</th>
-            <th>Cluster Description</th>
+            <th>cluster Id</th>
+            <th>cluster Name</th>
 
+            <th>Description</th>
+<!--             <th>Published Status</th>
+-->
         </tr>
     </thead>
     <!--thead>
@@ -12,7 +14,6 @@
             <td><input type="text" id="0" class="itemlist-input"></td>
             <td><input type="text" id="1" class="itemlist-input"></td>
             <td><input type="text" id="2" class="itemlist-input" ></td>
-
         </tr>
     </thead-->
 </table>
@@ -42,7 +43,7 @@
                     $("#itemlist_processing").css("display","none");
                 }*/
             },
-            "order": [[ 3, "desc" ]]
+            "order": [[ 2, "desc" ]]
         } );
 
         $('.itemlist-input').on( 'keyup click change', function () {
