@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #####################################
-# Scanscript for Dokument Archiving
+# Scanscript for Document Archiving
 #
 # Autor: adlerweb + kreativmonkey
 # Version: 0.5
@@ -16,20 +16,20 @@ SOURCE="ADF Duplex"
 SCANMODE="lineart"
 #SCANMODE="color"
 #SCANMODE="gray"
-KERNE=4 #Anzahl der zu verwendenden Kerne
+KERNE=4 #Number of cores to use
 
 blankpagesize=20k
 
 #Info
-#Scannt DIN A4 (310x210mm)
-#Max 99 Seiten
-#Erstellt ein durchsuchbares PDF
+#Scans DIN A4 (310x210mm)
+#Max 99 pages
+#Creates a searchable PDF
 
 #Todo
-# -> Aufgabenqueue - nächster Scan während OCR noch läuft
+# -> Task queue - next scan while OCR is still running
 
-#Notizen:
-# -> Unpaper deaktiviert, schluckt ggf. i-Punkte und Tabellenlinien
+#Notes:
+# -> Unpaper disabled, swallows i-points and table lines if necessary
 
 TMPDIR=/tmp/scan
 #unpaper=/usr/bin/unpaper
@@ -44,10 +44,10 @@ parallel=/usr/bin/parallel
 TESSDATA_PREFIX="/usr/share/"
 
 
-#"Debug"-Modus (alle Befehle anzeigen)
+#"Debug"-Modus (show all commands)
 set -x
 
-#### PRÜFEN OB ALLE PROGRAMME VORHANDEN SIND ####
+#### CHECK WHETHER ALL PROGRAMS ARE PRESENT ####
 if [ ! -f "$scanimage" ] ;then
     echo scanimage not found - Package sane \(-frontend\)
     exit 1
@@ -92,13 +92,13 @@ fi
 mkdir -p ${TMPDIR}
 rm -Rvi ${TMPDIR}/*
 
-#Dateiname für Ausgabe
+#Filename for output
 OUTPUT=./scan-`date +%Y%m%d%H%M%S`.pdf
 
 #Scan starten
 ${scanimage} -d "${SCANNER}" --mode ${SCANMODE} --resolution "${RESOLUTION}" --duplex=yes --feeder-mode=continuous --paper-size=A4 --format=tiff -p --brightness "${BRIGHTNESS}" --batch=/tmp/scan/scan-%d.tiff -x 210 -y 310
 
-#PNM in TIFF umwandeln und komprimieren
+#Convert PNM to TIFF and compress
 function convert_pnm () {
 	$convert $1 -compress LZW $1.tiff
 	rm $1
@@ -108,10 +108,10 @@ for file in ${TMPDIR}/scan*; do
     	convert_pnm $file
 done
 
-#Dateien größer als $blankpagesize finden (=ohne leere Seiten)
+#Find files larger than $ blankpagesize (= without empty pages)
 files=`find ${TMPDIR} -iname "scan*tiff" -size +$blankpagesize | sort`
 
-#OCR starten und pro Seite ein PDF erstellen
+#Start OCR and create a PDF per page
 parallel -j ${KERNE} \
 $tesseract -l deu {} {.} pdf \
 ::: ${files}
@@ -119,7 +119,7 @@ $tesseract -l deu {} {.} pdf \
 #remove unused files
 rm ${TMPDIR}/*.tiff
 
-#Unpaper entfernt hier Punkte bei iäöü & co :/
+#Unpaper removes points from iäöü & co :/
 #rename 's/(\d)\0$1' unpaper-rename 's/(\d)\0$1' unpaper-[1-9].pnm.tiff.pdf
 #for i in unpaper-[1-9].pnm.tiff.pdf ;do
 #	echo $i

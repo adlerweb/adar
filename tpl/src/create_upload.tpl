@@ -1,5 +1,5 @@
-    
-    
+
+
         <div class="infobox">
         <div class="infobox_header">
             <img src="vendor/koala-framework/library-silkicons/page_add.png" alt="" /> {$titel}
