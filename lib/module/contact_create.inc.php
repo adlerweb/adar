@@ -24,7 +24,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
     && isset($_REQUEST['Notes'])
 ) {
     if($_REQUEST['id'] == '0'
-        && !$GLOBALS['adlerweb']['sql']->querystmt("INSERT INTO Contacts VALUES ('', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )", str_repeat('s', 13), array(
+        && !$GLOBALS['adlerweb']['sql']->querystmt("INSERT INTO Contacts VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )", str_repeat('s', 13), array(
             $_REQUEST['FamilyName'],
             $_REQUEST['GivenName'],
             $_REQUEST['Type'],
