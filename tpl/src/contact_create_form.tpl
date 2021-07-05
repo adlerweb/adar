@@ -41,7 +41,7 @@
             <tr><td><label for="Phone">Telefon:</label></td><td><input type="text" id="Phone" size="100%" {if $details.Phone !== null} value="{$details.Phone}"{/if} /></td></tr>
             <tr><td><label for="Fax">Fax:</label></td><td><input type="text" id="Fax" size="100%" {if $details.Fax !== null} value="{$details.Fax}"{/if} /></td></tr>
             <tr><td><label for="Mail">Mail:</label></td><td><input type="text" id="Mail" size="100%" {if $details.Mail !== null} value="{$details.Mail}"{/if} /></td></tr>
-            <tr><td><label for="URL">URL:</label></td><td><input type="text" id="URL" size="100%" {if $details.URL !== null} value="{$details.URL}"{else} value="http://"{/if} /></td></tr>
+            <tr><td><label for="URL">URL:</label></td><td><input type="text" id="URL" size="100%" {if $details.URL !== null} value="{$details.URL}"{else} value="https://"{/if} /></td></tr>
         </table>
     </fieldset>
 
