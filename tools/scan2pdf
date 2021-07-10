@@ -7,6 +7,8 @@
 # Version: 0.5
 #####################################
 
+#DEBUG=1
+
 SCANNER="kvs20xx:libusb:002:118" # Scanner ID
 #SCANNER=`scanimage -L  | cut -d "'" -f 1 | cut -d '`' -f 2`
 RESOLUTION=300
@@ -16,9 +18,13 @@ SOURCE="ADF Duplex"
 SCANMODE="lineart"
 #SCANMODE="color"
 #SCANMODE="gray"
+
+# Optionen des Druckers anzeigen mit: scanimage -d $SCANNER -A
+#SCANZUSATZOPTIONEN="--duplex=yes --feeder-mode=continuous --paper-size=A4"
+
 KERNE=4 #Anzahl der zu verwendenden Kerne
 
-blankpagesize=20k
+blankpagesize=20k # Durch ausprobieren den richtigen Wert ermitteln.
 
 #Info
 #Scannt DIN A4 (310x210mm)
@@ -35,9 +41,15 @@ TMPDIR=/tmp/scan
 #unpaper=/usr/bin/unpaper
 scanimage=/usr/bin/scanimage
 #tiffcp=/usr/bin/tiffcp
-tiff2pdf=/usr/bin/tiff2pdf
+#tiff2pdf=/usr/bin/tiff2pdf
 tesseract=/usr/bin/tesseract
+
+# Programme um die PDFs zusammen zu fügen
 stapler=/usr/bin/stapler
+#pdftk=/usr/bin/pdftk       # package pdftk
+#pdfjoin=/usr/bin/pdfjoin   # package pdfjam; PDFjam setzt eine pdfTeX-Installation voraus. pdfjam ist seit Trusty Tahr ein virtuelles Paket, das auf texlive-extra-utils verweist. 
+#pdfunite=/usr/bin/pdfunite # package poppler-utils
+
 convert=/usr/bin/convert
 parallel=/usr/bin/parallel
 
@@ -58,18 +70,30 @@ fi
 #    exit 1
 #fi
 
-if [ ! -f "$tiff2pdf" ] ;then
-    echo tiff2pdf not found - package libtiff \(-tools/utils\)
-    exit 1
-fi
+#if [ ! -f "$tiff2pdf" ] ;then
+#    echo tiff2pdf not found - package libtiff \(-tools/utils\)
+#    exit 1
+#fi
 
 if [ ! -f "$tesseract" ] ;then
     echo tesseract not found - package tesseract
     exit 1
 fi
 
-if [ ! -f "$stapler" ] ;then
+if [ ! -f "$stapler" ] && [ "$stapler" != "" ]; then
     echo stapler not found - package stapler
+    exit 1
+fi
+if [ ! -f "$pdftk" ] && [ "$pdftk" != "" ]; then
+    echo pdftk not found - package pdftk
+    exit 1
+fi
+if [ ! -f "$pdfjoin" ] && [ "$pdfjoin" != "" ]; then
+    echo "pdfjoin not found - package pdfjam; PDFjam setzt eine pdfTeX-Installation voraus."
+    exit 1
+fi
+if [ ! -f "$pdfunite" ] && [ "$pdfunite" != "" ]; then
+    echo pdfunite not found - package poppler-utils
     exit 1
 fi
 
@@ -95,9 +119,29 @@ rm -Rvi ${TMPDIR}/*
 #Dateiname für Ausgabe
 OUTPUT=./scan-`date +%Y%m%d%H%M%S`.pdf
 
-#Scan starten
-${scanimage} -d "${SCANNER}" --mode ${SCANMODE} --resolution "${RESOLUTION}" --duplex=yes --feeder-mode=continuous --paper-size=A4 --format=tiff -p --brightness "${BRIGHTNESS}" --batch=/tmp/scan/scan-%d.tiff -x 210 -y 310
+OPTIONEN=""
 
+if [ "${SOURCE}" != "" ]; then
+    OPTIONEN="${OPTIONEN} --source ${SOURCE}"
+fi
+
+if [ "${SCANMODE}" != "" ]; then
+    OPTIONEN="${OPTIONEN} --mode ${SCANMODE}"
+fi
+
+if [ "${RESOLUTION}" != "" ]; then
+    OPTIONEN="${OPTIONEN} --resolution ${RESOLUTION}"
+fi
+
+if [ "${BRIGHTNESS}" != "" ]; then
+    OPTIONEN="${OPTIONEN} --brightness ${BRIGHTNESS}"
+fi
+
+#Scan starten
+${scanimage} -d "${SCANNER}" ${OPTIONEN} --format=tiff -p  --batch=${TMPDIR}/scan-%d.tiff -x 210 -y 310  ${SCANZUSATZOPTIONEN}
+if [ "$?" != "0" ]; then
+    exit $?
+fi
 #PNM in TIFF umwandeln und komprimieren
 function convert_pnm () {
 	$convert $1 -compress LZW $1.tiff
@@ -117,7 +161,9 @@ $tesseract -l deu {} {.} pdf \
 ::: ${files}
 
 #remove unused files
-rm ${TMPDIR}/*.tiff
+if [ "$DEBUG" != "1" ]; then
+    rm ${TMPDIR}/*.tiff
+fi
 
 #Unpaper entfernt hier Punkte bei iäöü & co :/
 #rename 's/(\d)\0$1' unpaper-rename 's/(\d)\0$1' unpaper-[1-9].pnm.tiff.pdf
@@ -131,5 +177,18 @@ done
 
 pdfs=`find ${TMPDIR} -iname "scan*pdf" | sort`
 
-$stapler cat $pdfs "${OUTPUT}"
-rm -Rv ${TMPDIR}/*.tiff ${TMPDIR}/*.pdf
+if [ -f "$stapler" ]; then
+    $stapler cat $pdfs "${OUTPUT}"
+elif [ -f "$pdftk" ]; then
+    pdftk $pdfs cat output "${OUTPUT}"
+elif [ -f "$pdfjoin" ]; then
+    pdfjoin $pdfs --outfile "${OUTPUT}"
+elif [ -f "$pdfunite" ]; then
+    pdfunite $pdfs "${OUTPUT}"
+fi
+if [ "$DEBUG" != "1" ]; then
+    rm -Rv ${TMPDIR}/*.tiff ${TMPDIR}/*.pdf
+fi
+
+
+
