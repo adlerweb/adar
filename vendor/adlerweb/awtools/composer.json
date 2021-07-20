@@ -1,0 +1,19 @@
+{
+    "name": "adlerweb/awtools",
+    "description": "Various wrappers to extend PHP functionality",
+    "type": "component",
+    "homepage": "https://github.com/adlerweb/awtools",
+    "license": "MIT",
+    "authors": [
+    	{
+            "name": "Florian Knodt",
+            "email": "awtools@adlerweb.info"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/adlerweb/awtools/issues"
+    },
+    "require": {
+        "php": ">=5.2"
+    }
+}
