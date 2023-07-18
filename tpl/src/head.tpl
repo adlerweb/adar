@@ -12,8 +12,8 @@
     <script type="text/javascript" language="javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
 
     <!-- Achtung: Datatables ueüberschreibt .autocomplete von jquery-ui! -->
-    <link rel="stylesheet" type="text/css" href="vendor/datatables/datatables/media/css/jquery.dataTables.min.css"/>
-    <script type="text/javascript" src="vendor/datatables/datatables/media/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="node_modules/datatables.net-dt/css/jquery.dataTables.min.css"/>
+    <script type="text/javascript" src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="node_modules/jquery-ui/dist/themes/base/jquery-ui.min.css"/>
     <script type="text/javascript" language="javascript" src="node_modules/jquery-ui/dist/jquery-ui.min.js"></script>

@@ -20,6 +20,7 @@
 		}
 	],
 	"dependencies": {
-		"jquery-ui": "^1.13.2"
+		"jquery-ui": "^1.13.2",
+		"datatables.net-dt": "^1.13.5"
 	}
 }
