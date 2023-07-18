@@ -15,7 +15,7 @@
 	"bugs": "https://github.com/adlerweb/adar/issues",
 	"licenses": [
 		{
-			"type": "MIT",
+			"type": "GPL-3.0",
 			"url": "https://raw.githubusercontent.com/adlerweb/adar/master/LICENSE"
 		}
 	],
