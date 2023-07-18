@@ -1,0 +1,25 @@
+{
+	"name": "adar",
+	"title": "AdAr",
+	"description": "Another dumb Archive - Document archiving solution",
+	"version": "0.0.2",
+	"homepage": "https://github.com/adlerweb/adar",
+	"author": {
+		"name": "Florian Knodt",
+		"url": "https://adlerweb.info"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/adlerweb/adar.git"
+	},
+	"bugs": "https://github.com/adlerweb/adar/issues",
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "https://raw.githubusercontent.com/adlerweb/adar/master/LICENSE"
+		}
+	],
+	"dependencies": {
+		"jquery-ui": "^1.13.2"
+	}
+}
