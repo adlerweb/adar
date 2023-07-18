@@ -22,6 +22,7 @@ Das System wird von mir aktiv zur Datenablage genutzt. Hierzu werden PDF-Dateien
  - Benötigt Server mit IPv4-Zugang (Github unterstützt noch kein IPv6)
  - Benötigt eine MySQL/MariaDB-Datenbank
  - Benötigt [composer](https://getcomposer.org/)
+ - Benötigt [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
  - tesseract >=3
    - Um OCR für Grafiken auszuführen
    - nicht wirklich getestet, Sprache Deutsch voreingestellt
@@ -33,12 +34,12 @@ Das System wird von mir aktiv zur Datenablage genutzt. Hierzu werden PDF-Dateien
 ### Einrichtung
 
  - Daten auf Webserver kopieren
-   - Die Ordner daten/* und tpl/cache/ müssen für den Webserver schreibbar sein
+   - Die Ordner daten/* und tpl/compile/ müssen für den Webserver schreibbar sein
  - MySQL-Datenbank anlegen und doc/mysql.sql importieren
  - Zugangsdaten in config.php ergänzen
    - Optional: Name der Installation (ADAR_PROGNAME) anpassen
    - Optional: E-Mail-Adresse in ADAR_INFOMAIL_TO ergänzen, in diesem Fall wird bei jeder Neuanlage eine E-Mail an diese Adresse versendet
- - Abhängigkeiten installieren: ```composer install```
+ - Abhängigkeiten installieren: ```composer install``` und ```npm install```
  - cron.php sollte regelmäßig als Webserver aufgerufen werden, andernfalls werden temporäre Dateien nicht aufgeräumt und OCR nicht ausgeführt
    - z.B. ```*/15 * * * * /usr/bin/php -f /var/www/cron.php > /var/log/adar.cron.log``` in crontab
  - Login mit admin/admin
