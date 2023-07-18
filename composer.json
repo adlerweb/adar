@@ -19,7 +19,7 @@
 	"datatables/datatables": "1.10.*",
 	"components/jquery": "3.2.*",
 	"components/jqueryui": "1.12.*",
-	"smarty/smarty": "3.1.*",
+	"smarty/smarty": "4.3.*",
 	"adlerweb/calender-date-input": "dev-master",
 	"pixabay/jquery-tageditor": "dev-master",
 	"adlerweb/awtools": "0.2.*",
