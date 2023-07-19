@@ -36,6 +36,7 @@ Das System wird von mir aktiv zur Datenablage genutzt. Hierzu werden PDF-Dateien
  - Daten auf Webserver kopieren
    - Die Ordner daten/* und tpl/compile/ müssen für den Webserver schreibbar sein
  - MySQL-Datenbank anlegen und doc/mysql.sql importieren
+ - config.dist.php nach config.php kopieren
  - Zugangsdaten in config.php ergänzen
    - Optional: Name der Installation (ADAR_PROGNAME) anpassen
    - Optional: E-Mail-Adresse in ADAR_INFOMAIL_TO ergänzen, in diesem Fall wird bei jeder Neuanlage eine E-Mail an diese Adresse versendet
