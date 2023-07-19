@@ -50,6 +50,7 @@
                 <div class="infobox_half">
                     <div class="infobox_header">
                         <img src="vendor/koala-framework/library-silkicons/book.png" alt="" /> Objektbeschreibung
+                        <a href="?m=content_edit&id={$ItemID}"><img src="vendor/koala-framework/library-silkicons/page_edit.png" alt="[EDIT]"></a>
                     </div>
                     <div class="infobox_content">
                         <table>

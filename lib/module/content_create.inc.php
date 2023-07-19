@@ -76,6 +76,7 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
                     }
                 }
 
+                $GLOBALS['adlerweb']['tpl']->assign('edit', false);
                 $GLOBALS['adlerweb']['tpl']->assign('hash', $hash);
                 $GLOBALS['adlerweb']['tpl']->assign('id', $id);
                 $GLOBALS['adlerweb']['tpl']->assign('date', $date);
@@ -84,6 +85,9 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
                 $GLOBALS['adlerweb']['tpl']->assign('ScanUser', $_SESSION['adlerweb']['session']['user']);
                 $GLOBALS['adlerweb']['tpl']->assign('ScanUserShort', $_SESSION['adlerweb']['session']['short']);
                 $GLOBALS['adlerweb']['tpl']->assign('Format', gettopformat());
+                $GLOBALS['adlerweb']['tpl']->assign('Caption', "");
+                $GLOBALS['adlerweb']['tpl']->assign('From', "");
+                $GLOBALS['adlerweb']['tpl']->assign('To', "");
                 $GLOBALS['adlerweb']['tpl']->assign('titel', 'Erfassen - Schritt 2 von 2');
                 $GLOBALS['adlerweb']['tpl']->assign('modul', 'create_form');
                 $GLOBALS['adlerweb']['tpl']->assign('menue', 'content_create');
@@ -186,6 +190,8 @@ if(!$GLOBALS['adlerweb']['session']->session_isloggedin()) {
             }
         }
     }
+}elseif(isset($_REQUEST['id']) && $_REQUEST[''] == 'Upload') {
+
 }else{
     $GLOBALS['adlerweb']['tpl']->assign('titel', 'Erfassen - Schritt 1 von 2');
     $GLOBALS['adlerweb']['tpl']->assign('modul', 'create_upload');
