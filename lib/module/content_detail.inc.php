@@ -48,7 +48,7 @@
                         http_response_code(400);
                         die();
                     }
-                    infomail("Neuer Tag Bild ".$detail['ItemID'], $_REQUEST['tag']);
+                    infomail("Neuer Tag ".$detail['ItemID'], $_REQUEST['tag']);
                     http_response_code(200);
                     echo '[]';
                     die();
@@ -57,7 +57,7 @@
                         http_response_code(400);
                         die();
                     }
-                    infomail("Tag geloescht Bild ".$detail['ItemID'], $_REQUEST['tag']);
+                    infomail("Tag geloescht ".$detail['ItemID'], $_REQUEST['tag']);
                     http_response_code(200);
                     echo '[]';
                     die();
