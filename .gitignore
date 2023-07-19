@@ -1,0 +1,35 @@
+### Generic ###
+*.diff
+*.swp
+*.swo
+*~
+
+### Adar User data ###
+config.php
+data/cache/*
+data/org/*
+
+### Adar Caches ###
+data/tmp/*
+tpl/compile/*
+
+### Composer ###
+composer.phar
+composer.lock
+/vendor/
+
+### NPM ###
+node_modules/
+package-lock.json
+
+### VSCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+.history/
+*.vsix
+.history
+.ionide
