@@ -106,7 +106,12 @@ def addFile(data, filename):
     if 'tags' in data and type(data['tags']) == list:
         for tag in data['tags']:
             addTag(cursor, ItemID, tag)
-    
+
+    if 'custom' in data and type(data['custom']) is dict:
+        for key, value in data['custom'].items():
+            tag = key + "|" + str(value)
+            addTag(cursor, ItemID, tag)
+            
     return ItemID
 
 def addItem(cursor, data, filename, ItemID, Hash):
@@ -141,6 +146,12 @@ def addItem(cursor, data, filename, ItemID, Hash):
         Description = Description + "-------------\n"
         for mod in data['modules']:
             Description = Description + f"* {mod}\n"
+        rawData = pprint.pformat(data, indent=4)
+        Description = Description + "-------------\n"
+        Description = Description + "Raw Data:\n"
+        Description = Description + "-------------\n"
+        Description = Description + rawData
+        Description = Description + "-------------\n"
         Description = Description + "\n\n"
 
     sql = "INSERT INTO `Items` (`ItemID`, `Caption`, `Description`, `Format`, `Date`, `Sender`, `Receiver`, `ScanUser`, `ScanDate`, `SourceSHA256`, `OCRStatus`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, NOW(), %s, %s);"
