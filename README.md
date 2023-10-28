@@ -45,6 +45,36 @@ Das System wird von mir aktiv zur Datenablage genutzt. Hierzu werden PDF-Dateien
    - z.B. ```*/15 * * * * /usr/bin/php -f /var/www/cron.php > /var/log/adar.cron.log``` in crontab
  - Login mit admin/admin
 
+### Ubuntu Bionic (nur i686 / 32 Bit)
+
+Für Ubuntu Bionic steht ein automatisches Installationsscript mit Konfigurationsassistent in [doc/setup-ubuntu18.04.sh](https://github.com/adlerweb/adar/blob/master/doc/setup-ubuntu18.04.sh) zur Verfügung:
+
+````
+sudo -s
+pushd /tmp
+wget "https://raw.githubusercontent.com/adlerweb/adar/master/doc/setup-ubuntu18.04.sh"
+chmod +x setup-ubuntu18.04.sh
+./setup-ubuntu18.04.sh
+popd
+````
+
+Dies installiert alle Voraussetzungen (Apache/MariaDB, etc), ändert die Konfigurationen, erstellt die Datenbank und legt ein Login-Passwort fest. Da hierbei Systemkonfigurationen geändert werden sollte das Script nur auf ausschließlich für AdAr vorgesehenen Systemen (VM, Container, etc) verwendet werden.
+
+### Ubuntu Xenial (nur i686 / 32 Bit)
+
+Für Ubuntu Xenial steht ein automatisches Installationsscript mit Konfigurationsassistent in [doc/setup-ubuntu16.04.sh](https://github.com/adlerweb/adar/blob/master/doc/setup-ubuntu16.04.sh) zur Verfügung:
+
+````
+sudo -s
+pushd /tmp
+wget "https://raw.githubusercontent.com/adlerweb/adar/master/doc/setup-ubuntu16.04.sh"
+chmod +x setup-ubuntu16.04.sh
+./setup-ubuntu16.04.sh
+popd
+````
+
+Dies installiert alle Voraussetzungen (Apache/MariaDB, etc), ändert die Konfigurationen, erstellt die Datenbank und legt ein Login-Passwort fest. Da hierbei Systemkonfigurationen geändert werden sollte das Script nur auf ausschließlich für AdAr vorgesehenen Systemen (VM, Container, etc) verwendet werden.
+
 ### Debian Jessie
 
 Für Debian Jessie steht ein automatisches Installationsscript mit Konfigurationsassistent in [doc/setup-debian8.sh](https://github.com/adlerweb/adar/blob/master/doc/setup-debian8.sh) zur Verfügung:
@@ -52,7 +82,7 @@ Für Debian Jessie steht ein automatisches Installationsscript mit Konfiguration
 ````
 pushd /tmp
 wget "https://raw.githubusercontent.com/adlerweb/adar/master/doc/setup-debian8.sh"
-bash setup-debian8.de
+bash setup-debian8.sh
 popd
 ````
 
